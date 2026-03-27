@@ -72,7 +72,7 @@ const Dashboard = () => {
       {error && !loading && (
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4">
           <p className="text-red-800 dark:text-red-300 font-medium">Error: {error}</p>
-          <p className="text-red-600 dark:text-red-400 text-sm mt-1">Make sure the backend is running at http://localhost:8000</p>
+          <p className="text-red-600 dark:text-red-400 text-sm mt-1">Make sure the backend is running at https://datathon-production-c1f0.up.railway.app</p>
         </div>
       )}
 

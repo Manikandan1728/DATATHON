@@ -36,16 +36,24 @@ export const AnalysisProvider = ({ children }) => {
     setComparisonError(null)
 
     try {
-      const startRes = await fetch(`${API_BASE}/analyze`, {
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 60000);
+      
+      const response = await fetch(`${API_BASE}/analyze`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: searchQuery.trim(), max_per_site: 5 }),
-      })
-      if (!startRes.ok) {
-        const err = await startRes.json()
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: searchQuery
+        }),
+        signal: controller.signal
+      });
+      if (!response.ok) {
+        const err = await response.json()
         throw new Error(err.detail || 'Failed to start analysis')
       }
-      const job = await startRes.json()
+      const job = await response.json()
       setJobId(job.job_id)
       setJobStatus(job.status)
 

@@ -15,6 +15,10 @@ logger = logging.getLogger(__name__)
 app = FastAPI(title="Product Intelligence API", version="3.0.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
+@app.get("/")
+def home():
+    return {"message": "Datathon API is running"}
+
 jobs: Dict[str, Dict[str, Any]] = {}
 
 class AnalyzeRequest(BaseModel):

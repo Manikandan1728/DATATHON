@@ -1,0 +1,1725 @@
+{
+  "Headphones": {
+    "Sony WH-1000XM4": {
+      "battery": {
+        "average_sentiment": -0.875,
+        "review_count": 4,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          -1.0,
+          -1.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.75,
+        "review_count": 2,
+        "sentiment_scores": [
+          0.5,
+          1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": -0.19999999999999996,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.0,
+          -0.5,
+          0.0,
+          0.5,
+          -1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          -0.5,
+          0.5,
+          0.0,
+          0.5
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.6666666666666666,
+        "review_count": 6,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          -1.0,
+          -1.0,
+          0.5,
+          -1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.2777777777777777,
+        "review_count": 9,
+        "sentiment_scores": [
+          1.0,
+          1.0,
+          0.0,
+          0.5,
+          -0.5,
+          -0.5,
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.6666666666666665,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.1428571428571428,
+        "review_count": 7,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          -1.0,
+          -1.0,
+          0.5,
+          1.0,
+          -1.0
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.33333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          -1.0,
+          0.5,
+          0.5,
+          0.5,
+          1.0,
+          0.5
+        ]
+      }
+    },
+    "Sony WH-1000XM3": {
+      "battery": {
+        "average_sentiment": 0.0,
+        "review_count": 1,
+        "sentiment_scores": [
+          0.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.30000000000000004,
+        "review_count": 5,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.0,
+          0.0,
+          0.5,
+          0.0
+        ]
+      },
+      "display": {
+        "average_sentiment": -1.0,
+        "review_count": 1,
+        "sentiment_scores": [
+          -1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.19999999999999996,
+        "review_count": 5,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          -0.5,
+          0.5,
+          1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": -0.75,
+        "review_count": 2,
+        "sentiment_scores": [
+          -0.5,
+          -1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.19999999999999996,
+        "review_count": 5,
+        "sentiment_scores": [
+          -1.0,
+          1.0,
+          0.5,
+          0.0,
+          0.5
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 9,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          -0.5,
+          1.0,
+          0.0,
+          1.0,
+          -0.5,
+          0.0,
+          0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.8333333333333334,
+        "review_count": 3,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          -1.0
+        ]
+      }
+    },
+    "Bose QuietComfort 45": {
+      "battery": {
+        "average_sentiment": -0.25,
+        "review_count": 6,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          0.0,
+          0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.75,
+        "review_count": 2,
+        "sentiment_scores": [
+          1.0,
+          0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": -1.0,
+        "review_count": 1,
+        "sentiment_scores": [
+          -1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.0,
+        "review_count": 6,
+        "sentiment_scores": [
+          0.5,
+          0.5,
+          -1.0,
+          -1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.0714285714285714,
+        "review_count": 7,
+        "sentiment_scores": [
+          -1.0,
+          0.0,
+          1.0,
+          -0.5,
+          1.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          0.0,
+          0.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.875,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.375,
+        "review_count": 4,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.3571428571428572,
+        "review_count": 7,
+        "sentiment_scores": [
+          1.0,
+          0.5,
+          0.5,
+          0.5,
+          -0.5,
+          0.5,
+          0.0
+        ]
+      }
+    },
+    "Bose QuietComfort 35 II": {
+      "battery": {
+        "average_sentiment": -0.5,
+        "review_count": 6,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          0.0,
+          -1.0,
+          -1.0,
+          0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          -0.5,
+          1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          -1.0,
+          1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.375,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.0,
+          -0.5,
+          -0.5,
+          -0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.11111111111111116,
+        "review_count": 9,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          1.0,
+          -1.0,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          -0.5
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.25,
+        "review_count": 2,
+        "sentiment_scores": [
+          0.0,
+          0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.22222222222222232,
+        "review_count": 9,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          0.0,
+          0.5,
+          0.5,
+          0.5,
+          1.0,
+          1.0,
+          0.0
+        ]
+      }
+    },
+    "Apple AirPods Pro": {
+      "battery": {
+        "average_sentiment": -0.1428571428571428,
+        "review_count": 7,
+        "sentiment_scores": [
+          0.0,
+          -1.0,
+          0.5,
+          0.0,
+          -0.5,
+          0.5,
+          -0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.75,
+        "review_count": 2,
+        "sentiment_scores": [
+          1.0,
+          0.5
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          -1.0,
+          1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.30000000000000004,
+        "review_count": 5,
+        "sentiment_scores": [
+          -0.5,
+          0.5,
+          -1.0,
+          -1.0,
+          0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.08333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          -1.0,
+          0.0,
+          0.5,
+          1.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.0,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.33333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          0.0,
+          -1.0,
+          0.0,
+          0.5,
+          -1.0,
+          -0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.25,
+        "review_count": 8,
+        "sentiment_scores": [
+          0.0,
+          -0.5,
+          1.0,
+          -1.0,
+          0.5,
+          -1.0,
+          -0.5,
+          -0.5
+        ]
+      }
+    },
+    "Apple AirPods Max": {
+      "battery": {
+        "average_sentiment": -0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          0.0,
+          -1.0,
+          -0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": -0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          -0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.0,
+          -0.5,
+          1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": -0.19999999999999996,
+        "review_count": 5,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          0.5,
+          -1.0,
+          -1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.4285714285714286,
+        "review_count": 7,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          -0.5,
+          -0.5,
+          1.0,
+          -0.5,
+          -0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.8333333333333335,
+        "review_count": 3,
+        "sentiment_scores": [
+          1.0,
+          1.0,
+          0.5
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.625,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.6666666666666666,
+        "review_count": 3,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.22222222222222232,
+        "review_count": 9,
+        "sentiment_scores": [
+          -0.5,
+          1.0,
+          -1.0,
+          0.5,
+          0.5,
+          -1.0,
+          0.0,
+          -1.0,
+          -0.5
+        ]
+      }
+    }
+  },
+  "Smartphones": {
+    "iPhone 14 Pro": {
+      "battery": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.5,
+          0.5,
+          -0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          -1.0,
+          0.5,
+          1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          1.0,
+          0.5
+        ]
+      },
+      "display": {
+        "average_sentiment": -0.375,
+        "review_count": 4,
+        "sentiment_scores": [
+          -1.0,
+          0.0,
+          -0.5,
+          0.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          -0.5,
+          1.0,
+          0.5,
+          0.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.0714285714285714,
+        "review_count": 7,
+        "sentiment_scores": [
+          1.0,
+          0.0,
+          -0.5,
+          -1.0,
+          1.0,
+          0.5,
+          -0.5
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          -0.5
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.0,
+        "review_count": 3,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          -0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.2142857142857142,
+        "review_count": 7,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          0.0,
+          0.5,
+          -0.5,
+          -0.5,
+          1.0
+        ]
+      }
+    },
+    "iPhone 14": {
+      "battery": {
+        "average_sentiment": -0.33333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          -0.5,
+          0.0,
+          -1.0,
+          1.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.0,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          0.5,
+          -1.0,
+          0.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.25,
+        "review_count": 2,
+        "sentiment_scores": [
+          1.0,
+          -0.5
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.2142857142857142,
+        "review_count": 7,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          1.0,
+          0.5
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.1428571428571428,
+        "review_count": 7,
+        "sentiment_scores": [
+          -0.5,
+          1.0,
+          -0.5,
+          0.5,
+          -1.0,
+          0.5,
+          -1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": -0.33333333333333326,
+        "review_count": 3,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.0,
+        "review_count": 7,
+        "sentiment_scores": [
+          -0.5,
+          1.0,
+          -0.5,
+          -0.5,
+          0.5,
+          -1.0,
+          1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          -1.0,
+          0.5,
+          0.0,
+          0.0
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          -0.5,
+          0.0
+        ]
+      }
+    },
+    "Samsung Galaxy S23 Ultra": {
+      "battery": {
+        "average_sentiment": 0.08333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          0.0,
+          -1.0,
+          -1.0,
+          1.0,
+          1.0,
+          0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": -0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          -0.5,
+          0.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": -0.30000000000000004,
+        "review_count": 5,
+        "sentiment_scores": [
+          -0.5,
+          -0.5,
+          0.5,
+          -0.5,
+          -0.5
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.0,
+        "review_count": 1,
+        "sentiment_scores": [
+          0.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.09090909090909083,
+        "review_count": 11,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          -1.0,
+          -0.5,
+          1.0,
+          -0.5,
+          0.5,
+          0.5,
+          1.0,
+          -1.0,
+          0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.8333333333333335,
+        "review_count": 3,
+        "sentiment_scores": [
+          1.0,
+          0.5,
+          1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          -1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.25,
+        "review_count": 4,
+        "sentiment_scores": [
+          1.0,
+          0.5,
+          0.5,
+          -1.0
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.5,
+        "review_count": 7,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          -0.5,
+          0.0,
+          -1.0,
+          0.0,
+          -0.5
+        ]
+      }
+    },
+    "Samsung Galaxy S23": {
+      "battery": {
+        "average_sentiment": 0.19999999999999996,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.5,
+          0.0,
+          1.0,
+          0.5,
+          -1.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.10000000000000009,
+        "review_count": 5,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          -1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": -0.10000000000000009,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.5,
+          1.0,
+          -1.0,
+          -0.5,
+          -0.5
+        ]
+      },
+      "display": {
+        "average_sentiment": -1.0,
+        "review_count": 1,
+        "sentiment_scores": [
+          -1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.5,
+        "review_count": 3,
+        "sentiment_scores": [
+          -1.0,
+          0.5,
+          -1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.08333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          0.5,
+          0.0,
+          0.0,
+          -0.5
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          -0.5
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.16666666666666674,
+        "review_count": 6,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          -1.0,
+          -0.5,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "Google Pixel 7 Pro": {
+      "battery": {
+        "average_sentiment": 0.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          0.5,
+          -0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": -0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": 1.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          1.0,
+          1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.0,
+        "review_count": 6,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          -0.5,
+          -1.0,
+          0.5,
+          1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          -0.5,
+          0.5,
+          0.5,
+          0.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.5,
+        "review_count": 5,
+        "sentiment_scores": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          -0.5
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.25,
+        "review_count": 2,
+        "sentiment_scores": [
+          -0.5,
+          0.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.4285714285714286,
+        "review_count": 7,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          -1.0,
+          -0.5,
+          -1.0,
+          -1.0,
+          0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.1875,
+        "review_count": 8,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          -0.5,
+          -0.5,
+          0.0,
+          -0.5,
+          1.0,
+          -1.0
+        ]
+      }
+    },
+    "Google Pixel 7": {
+      "battery": {
+        "average_sentiment": 0.0625,
+        "review_count": 8,
+        "sentiment_scores": [
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.0,
+          1.0,
+          0.0,
+          -0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          -0.5,
+          0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": -0.3571428571428572,
+        "review_count": 7,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          0.0,
+          -0.5,
+          -1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "display": {
+        "average_sentiment": -0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          -0.5
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.0,
+        "review_count": 6,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          0.5,
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": -0.2777777777777777,
+        "review_count": 9,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          -0.5,
+          -1.0,
+          -0.5,
+          -1.0,
+          0.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.8,
+        "review_count": 5,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          -0.5,
+          -1.0,
+          -1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.2142857142857142,
+        "review_count": 7,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          1.0,
+          -0.5,
+          -0.5,
+          -1.0,
+          1.0
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          0.5
+        ]
+      }
+    }
+  },
+  "Laptops": {
+    "Dell XPS 15": {
+      "battery": {
+        "average_sentiment": 0.1875,
+        "review_count": 8,
+        "sentiment_scores": [
+          -1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          -0.5,
+          0.0,
+          1.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          1.0,
+          -1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          0.5
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.25,
+        "review_count": 2,
+        "sentiment_scores": [
+          1.0,
+          -0.5
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.0714285714285714,
+        "review_count": 7,
+        "sentiment_scores": [
+          0.5,
+          0.5,
+          -0.5,
+          0.0,
+          1.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.6666666666666665,
+        "review_count": 6,
+        "sentiment_scores": [
+          0.0,
+          0.5,
+          1.0,
+          1.0,
+          0.5,
+          1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.375,
+        "review_count": 4,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.0,
+        "review_count": 8,
+        "sentiment_scores": [
+          0.0,
+          1.0,
+          0.0,
+          -0.5,
+          -0.5,
+          0.5,
+          -1.0,
+          0.5
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.5,
+        "review_count": 5,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          0.5,
+          -1.0,
+          -0.5
+        ]
+      }
+    },
+    "Dell Inspiron 14": {
+      "battery": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.0,
+          1.0,
+          -0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.0,
+        "review_count": 7,
+        "sentiment_scores": [
+          1.0,
+          -0.5,
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.5,
+        "review_count": 2,
+        "sentiment_scores": [
+          0.0,
+          1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.3571428571428572,
+        "review_count": 7,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.0,
+        "review_count": 6,
+        "sentiment_scores": [
+          0.0,
+          -1.0,
+          0.0,
+          -1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": -0.25,
+        "review_count": 2,
+        "sentiment_scores": [
+          0.0,
+          -0.5
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.33333333333333326,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          -0.5
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.1428571428571428,
+        "review_count": 7,
+        "sentiment_scores": [
+          0.5,
+          0.5,
+          -1.0,
+          1.0,
+          0.0,
+          -1.0,
+          -1.0
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.375,
+        "review_count": 8,
+        "sentiment_scores": [
+          0.5,
+          1.0,
+          1.0,
+          0.5,
+          -1.0,
+          1.0,
+          1.0,
+          -1.0
+        ]
+      }
+    },
+    "HP Spectre x360": {
+      "battery": {
+        "average_sentiment": 0.5,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.5,
+          0.0,
+          1.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": 0.5714285714285716,
+        "review_count": 7,
+        "sentiment_scores": [
+          1.0,
+          0.5,
+          1.0,
+          0.5,
+          -1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": -0.75,
+        "review_count": 4,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.38888888888888884,
+        "review_count": 9,
+        "sentiment_scores": [
+          0.5,
+          1.0,
+          0.5,
+          1.0,
+          1.0,
+          -0.5,
+          0.0,
+          0.5,
+          -0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": -0.5,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          -1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.16666666666666674,
+        "review_count": 3,
+        "sentiment_scores": [
+          -0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.0625,
+        "review_count": 8,
+        "sentiment_scores": [
+          0.0,
+          -0.5,
+          1.0,
+          1.0,
+          0.0,
+          -1.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          0.5
+        ]
+      }
+    },
+    "HP Envy 13": {
+      "battery": {
+        "average_sentiment": 0.2857142857142858,
+        "review_count": 7,
+        "sentiment_scores": [
+          -0.5,
+          1.0,
+          0.0,
+          0.5,
+          1.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "sound": {
+        "average_sentiment": -0.5,
+        "review_count": 3,
+        "sentiment_scores": [
+          -1.0,
+          -1.0,
+          0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.0,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          0.5,
+          -1.0,
+          0.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.33333333333333326,
+        "review_count": 3,
+        "sentiment_scores": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.2777777777777777,
+        "review_count": 9,
+        "sentiment_scores": [
+          1.0,
+          1.0,
+          0.0,
+          -1.0,
+          1.0,
+          -1.0,
+          1.0,
+          0.0,
+          0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          -1.0,
+          1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.0,
+        "review_count": 3,
+        "sentiment_scores": [
+          1.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "software": {
+        "average_sentiment": -0.33333333333333326,
+        "review_count": 3,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          -1.0
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.0,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          0.5,
+          0.0,
+          -0.5
+        ]
+      }
+    },
+    "Apple MacBook Pro 16": {
+      "battery": {
+        "average_sentiment": -0.10000000000000009,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.0,
+          -1.0,
+          -1.0,
+          1.0,
+          0.5
+        ]
+      },
+      "sound": {
+        "average_sentiment": -0.33333333333333326,
+        "review_count": 3,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          0.5
+        ]
+      },
+      "camera": {
+        "average_sentiment": 0.08333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          -0.5,
+          0.5,
+          0.5,
+          -0.5,
+          -0.5,
+          1.0
+        ]
+      },
+      "display": {
+        "average_sentiment": 0.5,
+        "review_count": 1,
+        "sentiment_scores": [
+          0.5
+        ]
+      },
+      "performance": {
+        "average_sentiment": -0.5,
+        "review_count": 4,
+        "sentiment_scores": [
+          -1.0,
+          0.0,
+          -0.5,
+          -0.5
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.625,
+        "review_count": 4,
+        "sentiment_scores": [
+          1.0,
+          0.0,
+          1.0,
+          0.5
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": 0.33333333333333326,
+        "review_count": 6,
+        "sentiment_scores": [
+          -1.0,
+          1.0,
+          0.0,
+          0.5,
+          0.5,
+          1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.0,
+        "review_count": 8,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          1.0,
+          0.0,
+          0.0,
+          -0.5,
+          -0.5,
+          0.0
+        ]
+      },
+      "price": {
+        "average_sentiment": 0.125,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          -1.0,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "Apple MacBook Air M2": {
+      "battery": {
+        "average_sentiment": 0.3999999999999999,
+        "review_count": 5,
+        "sentiment_scores": [
+          0.5,
+          1.0,
+          0.0,
+          0.5,
+          0.0
+        ]
+      },
+      "camera": {
+        "average_sentiment": -0.5,
+        "review_count": 5,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          -0.5,
+          -0.5,
+          0.0
+        ]
+      },
+      "display": {
+        "average_sentiment": -0.10000000000000009,
+        "review_count": 5,
+        "sentiment_scores": [
+          -1.0,
+          -0.5,
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "performance": {
+        "average_sentiment": 0.2142857142857142,
+        "review_count": 7,
+        "sentiment_scores": [
+          0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.5,
+          -0.5,
+          0.0
+        ]
+      },
+      "comfort": {
+        "average_sentiment": 0.0,
+        "review_count": 2,
+        "sentiment_scores": [
+          -1.0,
+          1.0
+        ]
+      },
+      "connectivity": {
+        "average_sentiment": -0.375,
+        "review_count": 4,
+        "sentiment_scores": [
+          0.5,
+          -0.5,
+          -0.5,
+          -1.0
+        ]
+      },
+      "software": {
+        "average_sentiment": 0.0714285714285714,
+        "review_count": 7,
+        "sentiment_scores": [
+          -0.5,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "price": {
+        "average_sentiment": -0.30000000000000004,
+        "review_count": 5,
+        "sentiment_scores": [
+          -0.5,
+          -1.0,
+          1.0,
+          0.0,
+          -1.0
+        ]
+      }
+    }
+  }
+}

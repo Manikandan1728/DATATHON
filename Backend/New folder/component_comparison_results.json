@@ -1,0 +1,335 @@
+{
+  "component_analysis": {
+    "Headphones": {
+      "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones": {
+        "battery": {
+          "average_rating": 5.0,
+          "sentiment_score": 1.0,
+          "review_count": 1,
+          "reviews": [
+            5
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        },
+        "sound": {
+          "average_rating": 4.5,
+          "sentiment_score": 0.75,
+          "review_count": 2,
+          "reviews": [
+            5,
+            4
+          ],
+          "positive_reviews": 2,
+          "negative_reviews": 0
+        },
+        "noise_cancellation": {
+          "average_rating": 4.5,
+          "sentiment_score": 0.75,
+          "review_count": 2,
+          "reviews": [
+            5,
+            4
+          ],
+          "positive_reviews": 2,
+          "negative_reviews": 0
+        },
+        "build_quality": {
+          "average_rating": 4.5,
+          "sentiment_score": 0.75,
+          "review_count": 2,
+          "reviews": [
+            5,
+            4
+          ],
+          "positive_reviews": 2,
+          "negative_reviews": 0
+        },
+        "price_value": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 1,
+          "reviews": [
+            4
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        }
+      },
+      "Apple AirPods Pro (2nd Generation) with MagSafe Case": {
+        "battery": {
+          "average_rating": 3.0,
+          "sentiment_score": 0.0,
+          "review_count": 1,
+          "reviews": [
+            3
+          ],
+          "positive_reviews": 0,
+          "negative_reviews": 0
+        },
+        "sound": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 2,
+          "reviews": [
+            5,
+            3
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        },
+        "noise_cancellation": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 2,
+          "reviews": [
+            5,
+            3
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        },
+        "build_quality": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 2,
+          "reviews": [
+            5,
+            3
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        }
+      }
+    },
+    "Smartphones": {
+      "Samsung Galaxy S23 Ultra, 256GB, Phantom Black": {
+        "battery": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 1,
+          "reviews": [
+            4
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        },
+        "noise_cancellation": {
+          "average_rating": 4.5,
+          "sentiment_score": 0.75,
+          "review_count": 2,
+          "reviews": [
+            5,
+            4
+          ],
+          "positive_reviews": 2,
+          "negative_reviews": 0
+        },
+        "features": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 1,
+          "reviews": [
+            4
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        },
+        "price_value": {
+          "average_rating": 4.0,
+          "sentiment_score": 0.5,
+          "review_count": 1,
+          "reviews": [
+            4
+          ],
+          "positive_reviews": 1,
+          "negative_reviews": 0
+        }
+      }
+    }
+  },
+  "comparison_tables": {
+    "Headphones": {
+      "table": "+--------------------+------------+------------+------------+------------+------------+\n| Product Name       | battery    | build_qual | noise_canc | price_valu | sound      |\n+--------------------+------------+------------+------------+------------+------------+\n| Sony WH-1000X      |       5.0 |       4.5 |       4.5 |       4.0 |       4.5 |\n| Apple AirPods      |       3.0 |       4.0 |       4.0 |       N/A |       4.0 |\n+--------------------+------------+------------+------------+------------+------------+",
+      "components": [
+        "battery",
+        "build_quality",
+        "noise_cancellation",
+        "price_value",
+        "sound"
+      ],
+      "products": [
+        "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+        "Apple AirPods Pro (2nd Generation) with MagSafe Case"
+      ]
+    },
+    "Smartphones": {
+      "table": "+--------------------+------------+------------+------------+------------+\n| Product Name       | battery    | features   | noise_canc | price_valu |\n+--------------------+------------+------------+------------+------------+\n| Samsung Galaxy     |       4.0 |       4.0 |       4.5 |       4.0 |\n+--------------------+------------+------------+------------+------------+",
+      "components": [
+        "battery",
+        "features",
+        "noise_cancellation",
+        "price_value"
+      ],
+      "products": [
+        "Samsung Galaxy S23 Ultra, 256GB, Phantom Black"
+      ]
+    }
+  },
+  "component_winners": {
+    "Headphones": {
+      "battery": {
+        "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+        "rating": 5.0,
+        "sentiment": 1.0
+      },
+      "build_quality": {
+        "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+        "rating": 4.5,
+        "sentiment": 0.75
+      },
+      "noise_cancellation": {
+        "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+        "rating": 4.5,
+        "sentiment": 0.75
+      },
+      "price_value": {
+        "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+        "rating": 4.0,
+        "sentiment": 0.5
+      },
+      "sound": {
+        "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+        "rating": 4.5,
+        "sentiment": 0.75
+      }
+    },
+    "Smartphones": {
+      "battery": {
+        "winner": "Samsung Galaxy S23 Ultra, 256GB, Phantom Black",
+        "rating": 4.0,
+        "sentiment": 0.5
+      },
+      "features": {
+        "winner": "Samsung Galaxy S23 Ultra, 256GB, Phantom Black",
+        "rating": 4.0,
+        "sentiment": 0.5
+      },
+      "noise_cancellation": {
+        "winner": "Samsung Galaxy S23 Ultra, 256GB, Phantom Black",
+        "rating": 4.5,
+        "sentiment": 0.75
+      },
+      "price_value": {
+        "winner": "Samsung Galaxy S23 Ultra, 256GB, Phantom Black",
+        "rating": 4.0,
+        "sentiment": 0.5
+      }
+    }
+  },
+  "head_to_head": {
+    "Headphones": {
+      "product1": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+      "product2": "Apple AirPods Pro (2nd Generation) with MagSafe Case",
+      "component_battles": [
+        {
+          "component": "battery",
+          "product1_rating": 5.0,
+          "product2_rating": 3.0,
+          "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+          "margin": 2.0,
+          "significance": "high"
+        },
+        {
+          "component": "build_quality",
+          "product1_rating": 4.5,
+          "product2_rating": 4.0,
+          "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+          "margin": 0.5,
+          "significance": "low"
+        },
+        {
+          "component": "noise_cancellation",
+          "product1_rating": 4.5,
+          "product2_rating": 4.0,
+          "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+          "margin": 0.5,
+          "significance": "low"
+        },
+        {
+          "component": "sound",
+          "product1_rating": 4.5,
+          "product2_rating": 4.0,
+          "winner": "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones",
+          "margin": 0.5,
+          "significance": "low"
+        }
+      ]
+    }
+  },
+  "insights": {
+    "strengths": {
+      "Headphones": {
+        "Sony": {
+          "dominant_components": [
+            "battery",
+            "build_quality",
+            "noise_cancellation",
+            "price_value",
+            "sound"
+          ],
+          "avg_rating": 4.5,
+          "component_count": 5
+        }
+      },
+      "Smartphones": {
+        "Samsung": {
+          "dominant_components": [
+            "battery",
+            "features",
+            "noise_cancellation",
+            "price_value"
+          ],
+          "avg_rating": 4.125,
+          "component_count": 4
+        }
+      }
+    },
+    "weaknesses": {
+      "Headphones": {
+        "Apple": [
+          {
+            "component": "battery",
+            "rating": 3.0,
+            "sentiment": 0.0
+          }
+        ]
+      },
+      "Smartphones": {}
+    },
+    "opportunities": {},
+    "recommendations": [
+      {
+        "category": "Headphones",
+        "brand": "Sony",
+        "type": "leverage_strength",
+        "recommendation": "Leverage Sony's strength in battery, build_quality",
+        "action": "Highlight battery in marketing campaigns"
+      },
+      {
+        "category": "Smartphones",
+        "brand": "Samsung",
+        "type": "leverage_strength",
+        "recommendation": "Leverage Samsung's strength in battery, features",
+        "action": "Highlight battery in marketing campaigns"
+      },
+      {
+        "category": "Headphones",
+        "brand": "Apple",
+        "type": "address_weakness",
+        "recommendation": "Improve Apple's battery performance",
+        "action": "Focus R&D on battery improvements"
+      }
+    ]
+  }
+}

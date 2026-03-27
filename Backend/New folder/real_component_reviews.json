@@ -1,0 +1,32 @@
+{
+  "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones": {
+    "noise_cancellation": [
+      "The noise cancellation is incredible and the sound quality is amazing. Battery life is excellent too.",
+      "Audio quality is fantastic and noise cancellation works well. However, the price is quite steep."
+    ],
+    "sound": [
+      "The noise cancellation is incredible and the sound quality is amazing. Battery life is excellent too.",
+      "Audio quality is fantastic and noise cancellation works well. However, the price is quite steep."
+    ]
+  },
+  "Apple AirPods Pro (2nd Generation) with MagSafe Case": {
+    "noise_cancellation": [
+      "The active noise cancellation is much better than previous generation. Sound quality is clear and balanced.",
+      "Sound quality is good and ANC works well, but battery life doesn't last as long as advertised."
+    ],
+    "sound": [
+      "The active noise cancellation is much better than previous generation. Sound quality is clear and balanced.",
+      "Sound quality is good and ANC works well, but battery life doesn't last as long as advertised."
+    ]
+  },
+  "Samsung Galaxy S23 Ultra, 256GB, Phantom Black": {
+    "software": [
+      "The camera system is outstanding and the display is beautiful. Performance is smooth and fast.",
+      "Excellent features and performance, but the price is quite high. Battery life is decent."
+    ],
+    "processor": [
+      "The camera system is outstanding and the display is beautiful. Performance is smooth and fast.",
+      "Excellent features and performance, but the price is quite high. Battery life is decent."
+    ]
+  }
+}

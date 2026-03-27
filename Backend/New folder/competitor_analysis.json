@@ -1,0 +1,292 @@
+{
+  "category_analysis": {
+    "Headphones": {
+      "brand_scores": {
+        "Sony": {
+          "component_scores": {
+            "battery": 0.0,
+            "sound": 0.30000000000000004,
+            "camera": 0.125,
+            "display": -1.0,
+            "performance": 0.19999999999999996,
+            "comfort": -0.75,
+            "connectivity": 0.19999999999999996,
+            "software": 0.16666666666666674,
+            "price": -0.8333333333333334
+          },
+          "total_score": -1.3234126984126986,
+          "component_count": 18,
+          "average_score": -0.07352292768959437
+        },
+        "Bose": {
+          "component_scores": {
+            "battery": -0.5,
+            "sound": 0.125,
+            "camera": 0.125,
+            "display": 0.25,
+            "performance": -0.375,
+            "comfort": 0.11111111111111116,
+            "connectivity": 0.875,
+            "software": 0.25,
+            "price": 0.22222222222222232
+          },
+          "total_score": 0.7619047619047621,
+          "component_count": 17,
+          "average_score": 0.044817927170868355
+        },
+        "Apple": {
+          "component_scores": {
+            "battery": -0.25,
+            "camera": 0.16666666666666674,
+            "display": -0.19999999999999996,
+            "performance": -0.4285714285714286,
+            "comfort": 0.8333333333333335,
+            "connectivity": 0.625,
+            "software": -0.6666666666666666,
+            "price": -0.22222222222222232,
+            "sound": -0.5
+          },
+          "total_score": -0.8353174603174601,
+          "component_count": 17,
+          "average_score": -0.049136321195144717
+        }
+      },
+      "performance_table": "+--------+--------+--------+--------+--------+--------+\n| Brand  | Battery| Sound  | Camera | Display| Overall|\n+--------+--------+--------+--------+--------+--------+\n| Sony   |   0.00 |   0.30 |   0.12 |  -1.00 |  -0.07 |\n| Bose   |  -0.50 |   0.12 |   0.12 |   0.25 |   0.04 |\n| Apple  |  -0.25 |  -0.50 |   0.17 |  -0.20 |  -0.05 |\n+--------+--------+--------+--------+--------+--------+",
+      "brand_wins": {
+        "Sony": 0,
+        "Bose": 1,
+        "Apple": 2
+      },
+      "top_brand": "Bose"
+    },
+    "Smartphones": {
+      "brand_scores": {
+        "iPhone": {
+          "component_scores": {
+            "battery": -0.33333333333333326,
+            "sound": 0.0,
+            "camera": 0.25,
+            "display": 0.2142857142857142,
+            "performance": -0.1428571428571428,
+            "comfort": -0.33333333333333326,
+            "connectivity": 0.0,
+            "software": -0.125,
+            "price": -0.25
+          },
+          "total_score": -0.9047619047619044,
+          "component_count": 18,
+          "average_score": -0.05026455026455025
+        },
+        "Samsung": {
+          "component_scores": {
+            "battery": 0.19999999999999996,
+            "sound": 0.10000000000000009,
+            "camera": -0.10000000000000009,
+            "display": -1.0,
+            "performance": -0.5,
+            "comfort": 0.08333333333333326,
+            "connectivity": -0.5,
+            "software": 0.5,
+            "price": -0.16666666666666674
+          },
+          "total_score": -1.3424242424242427,
+          "component_count": 18,
+          "average_score": -0.07457912457912459
+        },
+        "Google": {
+          "component_scores": {
+            "battery": 0.0625,
+            "sound": 0.0,
+            "camera": -0.3571428571428572,
+            "display": -0.5,
+            "performance": 0.0,
+            "comfort": -0.2777777777777777,
+            "connectivity": -0.8,
+            "software": -0.2142857142857142,
+            "price": 0.16666666666666674
+          },
+          "total_score": -1.3277777777777777,
+          "component_count": 18,
+          "average_score": -0.07376543209876543
+        }
+      },
+      "performance_table": "+--------+--------+--------+--------+--------+--------+\n| Brand  | Battery| Sound  | Camera | Display| Overall|\n+--------+--------+--------+--------+--------+--------+\n| iPhone |  -0.33 |   0.00 |   0.25 |   0.21 |  -0.05 |\n| Samsung |   0.20 |   0.10 |  -0.10 |  -1.00 |  -0.07 |\n| Google |   0.06 |   0.00 |  -0.36 |  -0.50 |  -0.07 |\n+--------+--------+--------+--------+--------+--------+",
+      "brand_wins": {
+        "iPhone": 0,
+        "Samsung": 0,
+        "Google": 0
+      },
+      "top_brand": "iPhone"
+    },
+    "Laptops": {
+      "brand_scores": {
+        "Dell": {
+          "component_scores": {
+            "battery": 0.16666666666666674,
+            "sound": 0.0,
+            "camera": 0.5,
+            "display": 0.3571428571428572,
+            "performance": 0.0,
+            "comfort": -0.25,
+            "connectivity": -0.33333333333333326,
+            "software": -0.1428571428571428,
+            "price": 0.375
+          },
+          "total_score": 1.4732142857142858,
+          "component_count": 18,
+          "average_score": 0.0818452380952381
+        },
+        "HP": {
+          "component_scores": {
+            "battery": 0.2857142857142858,
+            "sound": -0.5,
+            "camera": 0.0,
+            "performance": 0.2777777777777777,
+            "comfort": 0.0,
+            "connectivity": 0.0,
+            "software": -0.33333333333333326,
+            "price": 0.0,
+            "display": 0.33333333333333326
+          },
+          "total_score": 1.0029761904761907,
+          "component_count": 17,
+          "average_score": 0.05899859943977592
+        },
+        "Apple": {
+          "component_scores": {
+            "battery": 0.3999999999999999,
+            "sound": -0.33333333333333326,
+            "camera": -0.5,
+            "display": -0.10000000000000009,
+            "performance": 0.2142857142857142,
+            "comfort": 0.0,
+            "connectivity": -0.375,
+            "software": 0.0714285714285714,
+            "price": -0.30000000000000004
+          },
+          "total_score": 0.14404761904761854,
+          "component_count": 17,
+          "average_score": 0.008473389355742267
+        }
+      },
+      "performance_table": "+--------+--------+--------+--------+--------+--------+\n| Brand  | Battery| Sound  | Camera | Display| Overall|\n+--------+--------+--------+--------+--------+--------+\n| Dell   |   0.17 |   0.00 |   0.50 |   0.36 |   0.08 |\n| HP     |   0.29 |  -0.50 |   0.00 |   0.33 |   0.06 |\n| Apple  |   0.40 |  -0.33 |  -0.50 |  -0.10 |   0.01 |\n+--------+--------+--------+--------+--------+--------+",
+      "brand_wins": {
+        "Dell": 0,
+        "HP": 0,
+        "Apple": 0
+      },
+      "top_brand": "Dell"
+    }
+  },
+  "cross_category_analysis": {
+    "overall_ranking": [
+      [
+        "Apple",
+        {
+          "categories": [
+            "Laptops",
+            "Laptops"
+          ],
+          "total_wins": 2,
+          "average_scores": [
+            -0.049136321195144717,
+            0.008473389355742267
+          ],
+          "overall_average": -0.020331465919701225
+        }
+      ],
+      [
+        "Bose",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 1,
+          "average_scores": [
+            0.044817927170868355
+          ],
+          "overall_average": 0.044817927170868355
+        }
+      ],
+      [
+        "Dell",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 0,
+          "average_scores": [
+            0.0818452380952381
+          ],
+          "overall_average": 0.0818452380952381
+        }
+      ],
+      [
+        "HP",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 0,
+          "average_scores": [
+            0.05899859943977592
+          ],
+          "overall_average": 0.05899859943977592
+        }
+      ],
+      [
+        "iPhone",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 0,
+          "average_scores": [
+            -0.05026455026455025
+          ],
+          "overall_average": -0.05026455026455025
+        }
+      ],
+      [
+        "Sony",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 0,
+          "average_scores": [
+            -0.07352292768959437
+          ],
+          "overall_average": -0.07352292768959437
+        }
+      ],
+      [
+        "Google",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 0,
+          "average_scores": [
+            -0.07376543209876543
+          ],
+          "overall_average": -0.07376543209876543
+        }
+      ],
+      [
+        "Samsung",
+        {
+          "categories": [
+            "Laptops"
+          ],
+          "total_wins": 0,
+          "average_scores": [
+            -0.07457912457912459
+          ],
+          "overall_average": -0.07457912457912459
+        }
+      ]
+    ],
+    "category_leaders": {}
+  }
+}

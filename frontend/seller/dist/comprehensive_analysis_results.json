@@ -1,0 +1,184 @@
+{
+  "execution_time": "2.34 seconds",
+  "total_products": 4,
+  "total_reviews": 2847,
+  "brands": {
+    "Sony": {
+      "products": ["Sony WH-1000XM5"],
+      "average_rating": 4.5,
+      "average_price": 29999,
+      "categories": ["Electronics"]
+    },
+    "Apple": {
+      "products": ["Apple AirPods Pro"],
+      "average_rating": 4.3,
+      "average_price": 18999,
+      "categories": ["Electronics"]
+    },
+    "Bose": {
+      "products": ["Bose QuietComfort 45"],
+      "average_rating": 4.4,
+      "average_price": 24999,
+      "categories": ["Electronics"]
+    },
+    "JBL": {
+      "products": ["JBL Tune 750BTNC"],
+      "average_rating": 4.1,
+      "average_price": 6999,
+      "categories": ["Electronics"]
+    }
+  },
+  "top_brand": "Sony",
+  "products": [
+    {
+      "name": "Sony WH-1000XM5",
+      "brand": "Sony",
+      "price": 29999,
+      "rating": 4.5,
+      "reviews": 892,
+      "components": {
+        "battery": 4.8,
+        "sound": 4.7,
+        "noise_cancellation": 4.9,
+        "build_quality": 4.6,
+        "price_value": 4.2
+      },
+      "sentiment": {
+        "positive": 0.78,
+        "neutral": 0.15,
+        "negative": 0.07,
+        "average_score": 4.5
+      }
+    },
+    {
+      "name": "Apple AirPods Pro",
+      "brand": "Apple",
+      "price": 18999,
+      "rating": 4.3,
+      "reviews": 756,
+      "components": {
+        "battery": 4.2,
+        "sound": 4.5,
+        "noise_cancellation": 4.4,
+        "build_quality": 4.3,
+        "price_value": 4.1
+      },
+      "sentiment": {
+        "positive": 0.72,
+        "neutral": 0.18,
+        "negative": 0.10,
+        "average_score": 4.3
+      }
+    },
+    {
+      "name": "Bose QuietComfort 45",
+      "brand": "Bose",
+      "price": 24999,
+      "rating": 4.4,
+      "reviews": 643,
+      "components": {
+        "battery": 4.5,
+        "sound": 4.6,
+        "noise_cancellation": 4.7,
+        "build_quality": 4.4,
+        "price_value": 4.3
+      },
+      "sentiment": {
+        "positive": 0.75,
+        "neutral": 0.16,
+        "negative": 0.09,
+        "average_score": 4.4
+      }
+    },
+    {
+      "name": "JBL Tune 750BTNC",
+      "brand": "JBL",
+      "price": 6999,
+      "rating": 4.1,
+      "reviews": 556,
+      "components": {
+        "battery": 4.0,
+        "sound": 4.1,
+        "noise_cancellation": 3.8,
+        "build_quality": 3.9,
+        "price_value": 4.6
+      }
+    }
+  ],
+  "customer_issues": [
+    {
+      "issue": "Battery Issues",
+      "percentage": 15.2,
+      "severity": "Medium",
+      "affected_products": ["Apple AirPods Pro", "JBL Tune 750BTNC"]
+    },
+    {
+      "issue": "Sound Quality",
+      "percentage": 8.7,
+      "severity": "Low",
+      "affected_products": ["JBL Tune 750BTNC"]
+    },
+    {
+      "issue": "Noise Cancellation",
+      "percentage": 12.3,
+      "severity": "Medium",
+      "affected_products": ["Apple AirPods Pro", "Bose QuietComfort 45"]
+    },
+    {
+      "issue": "Build Quality",
+      "percentage": 6.5,
+      "severity": "Low",
+      "affected_products": ["JBL Tune 750BTNC"]
+    },
+    {
+      "issue": "Connectivity Issues",
+      "percentage": 9.8,
+      "severity": "Medium",
+      "affected_products": ["Apple AirPods Pro", "Bose QuietComfort 45"]
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "High",
+      "title": "Improve Battery Performance",
+      "description": "Focus on extending battery life and improving charging speed for AirPods Pro and JBL models",
+      "action_items": [
+        "Research battery technology improvements",
+        "Optimize power consumption in firmware",
+        "Consider fast charging capabilities"
+      ]
+    },
+    {
+      "priority": "Medium",
+      "title": "Enhance Noise Cancellation",
+      "description": "Improve active noise cancellation technology to compete with Sony's market leadership",
+      "action_items": [
+        "Invest in advanced ANC algorithms",
+        "Improve hardware components",
+        "Test against Sony's benchmark"
+      ]
+    },
+    {
+      "priority": "Low",
+      "title": "Premium Build Materials",
+      "description": "Upgrade build quality to justify premium pricing",
+      "action_items": [
+        "Research premium materials",
+        "Improve manufacturing processes",
+        "Enhance durability testing"
+      ]
+    }
+  ],
+  "component_winners": {
+    "battery": "Sony WH-1000XM5",
+    "sound": "Sony WH-1000XM5",
+    "noise_cancellation": "Sony WH-1000XM5",
+    "build_quality": "Sony WH-1000XM5",
+    "price_value": "JBL Tune 750BTNC"
+  },
+  "insights": {
+    "component_analysis": "Sony dominates in all premium components except price value",
+    "competitor_comparison": "Sony leads with 4-0 component wins against competitors",
+    "customer_issues": "Battery and connectivity issues are the most common complaints"
+  }
+}

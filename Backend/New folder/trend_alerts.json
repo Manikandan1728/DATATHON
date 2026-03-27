@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-03-15T08:31:13.578322",
+  "analysis_period": "Last 6 months",
+  "thresholds_used": {
+    "significant_increase": 20.0,
+    "critical_increase": 50.0,
+    "emerging_threshold": 10,
+    "trend_consistency": 0.7
+  },
+  "alerts": {
+    "critical_alerts": [
+      {
+        "type": "component_spike",
+        "component": "battery",
+        "severity": "critical",
+        "message": "Battery complaints increased 52.3% in recent months",
+        "percentage_change": 52.3,
+        "consistency": 0.85,
+        "total_mentions": 342,
+        "recommendation": "Investigate battery issues immediately"
+      }
+    ],
+    "warning_alerts": [
+      {
+        "type": "complaint_increase",
+        "complaint": "sound",
+        "severity": "warning",
+        "message": "Sound issues increased 28.7% in recent months",
+        "percentage_change": 28.7,
+        "consistency": 0.72,
+        "total_complaints": 287,
+        "recommendation": "Monitor sound trends closely"
+      }
+    ],
+    "emerging_alerts": [
+      {
+        "type": "emerging_issue",
+        "issue": "connectivity",
+        "severity": "emerging",
+        "message": "Emerging issue: Connectivity (35.2% growth)",
+        "growth_rate": 35.2,
+        "recent_mentions": 45,
+        "recommendation": "Monitor connectivity trend for escalation"
+      }
+    ],
+    "positive_trends": [
+      {
+        "type": "sentiment_improvement",
+        "component": "display",
+        "severity": "positive",
+        "message": "Display sentiment improved 18.4% in recent months",
+        "percentage_change": 18.4,
+        "consistency": 0.68,
+        "current_sentiment": 0.742,
+        "recommendation": "Continue display improvement efforts"
+      }
+    ],
+    "summary": {
+      "total_alerts": 4,
+      "critical_count": 1,
+      "warning_count": 1,
+      "emerging_count": 1,
+      "positive_count": 1
+    }
+  }
+}

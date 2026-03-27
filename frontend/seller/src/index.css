@@ -1,0 +1,49 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply transition-colors duration-200;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900 transition-colors duration-200;
+  }
+  html.dark body {
+    @apply bg-gray-950 text-gray-100;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 transition-colors duration-200;
+  }
+  html.dark .card {
+    @apply bg-gray-900 border-gray-700;
+  }
+}
+
+/* Explicit dark mode overrides */
+html.dark {
+  color-scheme: dark;
+}
+html.dark body,
+html.dark #root {
+  background-color: rgb(3 7 18);
+  color: rgb(243 244 246);
+}
+html.dark .card {
+  background-color: rgb(17 24 39);
+  border-color: rgb(55 65 81);
+}
+
+/* Explicit light mode reset */
+html:not(.dark) body,
+html:not(.dark) #root {
+  background-color: rgb(249 250 251);
+  color: rgb(17 24 39);
+}
+html:not(.dark) .card {
+  background-color: rgb(255 255 255);
+  border-color: rgb(229 231 235);
+}

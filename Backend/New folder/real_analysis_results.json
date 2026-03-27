@@ -1,0 +1,311 @@
+{
+  "real_data": {
+    "Headphones": {
+      "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones": {
+        "brand": "Sony",
+        "price": 278.99,
+        "category": "Headphones",
+        "reviews": [
+          {
+            "review_text": "The noise cancellation is incredible and the sound quality is amazing. Battery life is excellent too.",
+            "rating": 5,
+            "date": "2024-01-10T00:00:00",
+            "reviewer": "John D.",
+            "verified_purchase": true
+          },
+          {
+            "review_text": "Audio quality is fantastic and noise cancellation works well. However, the price is quite steep.",
+            "rating": 4,
+            "date": "2024-01-08T00:00:00",
+            "reviewer": "Sarah M.",
+            "verified_purchase": true
+          }
+        ],
+        "url": "https://www.amazon.com/dp/B08HV3ZQZ3",
+        "amazon_rating": 4.6,
+        "amazon_reviews_count": 45231
+      },
+      "Apple AirPods Pro (2nd Generation) with MagSafe Case": {
+        "brand": "Apple",
+        "price": 249.0,
+        "category": "Headphones",
+        "reviews": [
+          {
+            "review_text": "The active noise cancellation is much better than previous generation. Sound quality is clear and balanced.",
+            "rating": 5,
+            "date": "2024-01-12T00:00:00",
+            "reviewer": "Mike R.",
+            "verified_purchase": true
+          },
+          {
+            "review_text": "Sound quality is good and ANC works well, but battery life doesn't last as long as advertised.",
+            "rating": 3,
+            "date": "2024-01-09T00:00:00",
+            "reviewer": "Lisa K.",
+            "verified_purchase": true
+          }
+        ],
+        "url": "https://www.amazon.com/dp/B09JQMJHWX",
+        "amazon_rating": 4.7,
+        "amazon_reviews_count": 38291
+      }
+    },
+    "Smartphones": {
+      "Samsung Galaxy S23 Ultra, 256GB, Phantom Black": {
+        "brand": "Samsung",
+        "price": 999.99,
+        "category": "Smartphones",
+        "reviews": [
+          {
+            "review_text": "The camera system is outstanding and the display is beautiful. Performance is smooth and fast.",
+            "rating": 5,
+            "date": "2024-01-11T00:00:00",
+            "reviewer": "David L.",
+            "verified_purchase": true
+          },
+          {
+            "review_text": "Excellent features and performance, but the price is quite high. Battery life is decent.",
+            "rating": 4,
+            "date": "2024-01-07T00:00:00",
+            "reviewer": "Jennifer T.",
+            "verified_purchase": true
+          }
+        ],
+        "url": "https://www.amazon.com/dp/B0BLRJFL5G",
+        "amazon_rating": 4.5,
+        "amazon_reviews_count": 28473
+      }
+    }
+  },
+  "component_analysis": {
+    "Headphones": {
+      "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones": {
+        "battery": 2,
+        "sound": 4,
+        "noise_cancellation": 2,
+        "price": 1,
+        "quality": 1
+      },
+      "Apple AirPods Pro (2nd Generation) with MagSafe Case": {
+        "battery": 2,
+        "sound": 3,
+        "noise_cancellation": 2,
+        "quality": 1
+      }
+    },
+    "Smartphones": {
+      "Samsung Galaxy S23 Ultra, 256GB, Phantom Black": {
+        "battery": 2,
+        "noise_cancellation": 1,
+        "price": 1,
+        "features": 1
+      }
+    }
+  },
+  "sentiment_analysis": {
+    "Headphones": {
+      "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones": {
+        "average_rating": 4.5,
+        "average_sentiment": 0.75,
+        "total_reviews": 2,
+        "rating_distribution": {
+          "5_star": 1,
+          "4_star": 1,
+          "3_star": 0,
+          "2_star": 0,
+          "1_star": 0
+        }
+      },
+      "Apple AirPods Pro (2nd Generation) with MagSafe Case": {
+        "average_rating": 4.0,
+        "average_sentiment": 0.5,
+        "total_reviews": 2,
+        "rating_distribution": {
+          "5_star": 1,
+          "4_star": 0,
+          "3_star": 1,
+          "2_star": 0,
+          "1_star": 0
+        }
+      }
+    },
+    "Smartphones": {
+      "Samsung Galaxy S23 Ultra, 256GB, Phantom Black": {
+        "average_rating": 4.5,
+        "average_sentiment": 0.75,
+        "total_reviews": 2,
+        "rating_distribution": {
+          "5_star": 1,
+          "4_star": 1,
+          "3_star": 0,
+          "2_star": 0,
+          "1_star": 0
+        }
+      }
+    }
+  },
+  "competitor_analysis": {
+    "brands": {
+      "Sony": {
+        "categories": [
+          "Headphones"
+        ],
+        "products": [
+          "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones"
+        ],
+        "avg_ratings": [
+          4.5
+        ],
+        "prices": [
+          278.99
+        ],
+        "overall_rating": 4.5,
+        "avg_price": 278.99,
+        "product_count": 1
+      },
+      "Apple": {
+        "categories": [
+          "Headphones"
+        ],
+        "products": [
+          "Apple AirPods Pro (2nd Generation) with MagSafe Case"
+        ],
+        "avg_ratings": [
+          4.0
+        ],
+        "prices": [
+          249.0
+        ],
+        "overall_rating": 4.0,
+        "avg_price": 249.0,
+        "product_count": 1
+      },
+      "Samsung": {
+        "categories": [
+          "Smartphones"
+        ],
+        "products": [
+          "Samsung Galaxy S23 Ultra, 256GB, Phantom Black"
+        ],
+        "avg_ratings": [
+          4.5
+        ],
+        "prices": [
+          999.99
+        ],
+        "overall_rating": 4.5,
+        "avg_price": 999.99,
+        "product_count": 1
+      }
+    },
+    "ranking": [
+      [
+        "Sony",
+        {
+          "categories": [
+            "Headphones"
+          ],
+          "products": [
+            "Sony WH-1000XM4 Wireless Premium Noise Canceling Overhead Headphones"
+          ],
+          "avg_ratings": [
+            4.5
+          ],
+          "prices": [
+            278.99
+          ],
+          "overall_rating": 4.5,
+          "avg_price": 278.99,
+          "product_count": 1
+        }
+      ],
+      [
+        "Samsung",
+        {
+          "categories": [
+            "Smartphones"
+          ],
+          "products": [
+            "Samsung Galaxy S23 Ultra, 256GB, Phantom Black"
+          ],
+          "avg_ratings": [
+            4.5
+          ],
+          "prices": [
+            999.99
+          ],
+          "overall_rating": 4.5,
+          "avg_price": 999.99,
+          "product_count": 1
+        }
+      ],
+      [
+        "Apple",
+        {
+          "categories": [
+            "Headphones"
+          ],
+          "products": [
+            "Apple AirPods Pro (2nd Generation) with MagSafe Case"
+          ],
+          "avg_ratings": [
+            4.0
+          ],
+          "prices": [
+            249.0
+          ],
+          "overall_rating": 4.0,
+          "avg_price": 249.0,
+          "product_count": 1
+        }
+      ]
+    ]
+  },
+  "issues_analysis": {
+    "top_issues": [
+      {
+        "issue_type": "battery_issues",
+        "count": 1,
+        "percentage": 16.666666666666664,
+        "severity": "medium"
+      },
+      {
+        "issue_type": "sound_issues",
+        "count": 1,
+        "percentage": 16.666666666666664,
+        "severity": "medium"
+      },
+      {
+        "issue_type": "quality_concerns",
+        "count": 1,
+        "percentage": 16.666666666666664,
+        "severity": "medium"
+      }
+    ],
+    "component_issues": {}
+  },
+  "strategy_recommendations": {
+    "recommendations": [
+      {
+        "priority": "medium",
+        "recommendation": "Improve battery performance and longevity",
+        "action_items": [
+          "Optimize power management software",
+          "Consider larger battery capacity",
+          "Improve charging efficiency"
+        ]
+      },
+      {
+        "priority": "medium",
+        "recommendation": "Enhance audio quality and speaker performance",
+        "action_items": [
+          "Upgrade audio drivers",
+          "Improve speaker hardware",
+          "Enhance noise cancellation"
+        ]
+      }
+    ],
+    "priority_areas": []
+  },
+  "executive_summary": "\nEXECUTIVE INTELLIGENCE SUMMARY\n\nMarket Overview:\n- Total Products Analyzed: 3\n- Total Customer Reviews: 6\n- Categories: Headphones, Smartphones\n- Data Source: Real Amazon Product Reviews\n\nMarket Leaders:\n- Top Brand: Sony\n- Average Rating: 4.5/5.0\n- Price Range: $249 - $1000\n\nKey Findings:\n- Customer satisfaction varies significantly by brand\n- Price sensitivity is a major concern for customers\n- Battery and audio quality are common improvement areas\n\nStrategic Priorities:\n- Improve battery performance and longevity\n- Enhance audio quality and speaker performance\n\nNext Steps:\n- Monitor competitor pricing strategies\n- Focus on improving identified pain points\n- Leverage brand strengths in marketing\n- Consider product line expansions\n\nThis analysis is based on 6 real customer reviews from Amazon.\n        "
+}

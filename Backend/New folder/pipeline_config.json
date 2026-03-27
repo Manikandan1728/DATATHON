@@ -1,0 +1,25 @@
+{
+  "input_files": {
+    "amazon_electronics_master_dataset": "amazon_electronics_master_dataset.csv",
+    "amazon_electronics_reviews_cleaned": "amazon_electronics_reviews_cleaned.csv",
+    "amazon_reviews_cleaned_4M": "amazon_reviews_cleaned_4M.csv"
+  },
+  "output_files": {
+    "processed_data": "processed_product_reviews.json",
+    "category_products": "category_products.json",
+    "component_reviews": "component_reviews.json",
+    "sentiment_scores": "component_sentiment_scores.json",
+    "competitor_analysis": "competitor_analysis.json",
+    "review_intelligence": "review_intelligence.json",
+    "strategic_recommendations": "strategic_recommendations.json",
+    "executive_reports": "executive_reports.json"
+  },
+  "parameters": {
+    "min_brands": 2,
+    "max_brands": 5,
+    "max_products_per_brand": 3,
+    "min_reviews_per_component": 5,
+    "sentiment_model": "auto",
+    "max_reviews_per_product": 20
+  }
+}

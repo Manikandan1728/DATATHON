@@ -10,27 +10,6 @@ from collections import Counter, defaultdict
 
 logger = logging.getLogger(__name__)
 
-# Lazy spaCy loader
-_nlp = None
-
-def _get_nlp():
-    global _nlp
-    if _nlp is not None:
-        return _nlp
-    try:
-        import spacy
-        _nlp = spacy.load("en_core_web_sm")
-    except OSError:
-        try:
-            import spacy
-            from spacy.cli import download
-            download("en_core_web_sm")
-            _nlp = spacy.load("en_core_web_sm")
-        except Exception as e:
-            logger.warning(f"spaCy model unavailable: {e}")
-            _nlp = None
-    return _nlp
-
 # Opinion words for aspect extraction
 _OPINION_WORDS = {
     "good", "great", "bad", "poor", "excellent", "terrible", "amazing",
@@ -200,75 +179,81 @@ def _split_sentences(text: str) -> List[str]:
         result.extend(p.strip() for p in parts if p.strip())
     return result
 
+def _extract_aspects_spacy(sentences: List[str]) -> List[str]:
+    """
+    Extract aspects using simple regex patterns (replacing spaCy).
+    Looks for nouns connected to opinion words via simple patterns.
+    """
+    aspects = []
+    
+    # Simple regex patterns for aspect extraction
+    patterns = [
+        r'\b(good|great|bad|poor|excellent|terrible|amazing|awful|fantastic|horrible|wonderful|disappointing|perfect|decent|mediocre|outstanding|impressive|weak|strong|fast|slow|long|short|large|small|big|tiny|heavy|light|loud|quiet|bright|dim|sharp|blurry|smooth|rough|even|uneven|flat|curved|straight|bent|twisted|crooked|level|slanted|vertical|horizontal|parallel|perpendicular|diagonal|angular|round|square|rectangular|triangular|circular|oval|elliptical|spherical|cylindrical|conical|pyramidal|cubic|tetrahedral|octahedral|hexagonal|pentagonal|polygonal|irregular|regular|symmetrical|asymmetrical|balanced|unbalanced|stable|unstable|steady|unsteady|firm|loose|tight|slack|tense|relaxed|stiff|limber|rigid|flexible|elastic|plastic|brittle|ductile|malleable|hard|soft|tough|fragile|strong|weak|durable|perishable|lasting|temporary|permanent|transient|stable|unstable|volatile|inert|reactive|active|passive|energetic|lethargic|vigorous|feeble|powerful|powerless|mighty|helpless|dominant|submissive|aggressive|defensive|offensive|protective|destructive|constructive|creative|analytical|logical|rational|irrational|reasonable|unreasonable|sensible|nonsensical|practical|impractical|realistic|unrealistic|optimistic|pessimistic|hopeful|despairing|confident|insecure|sure|unsure|certain|uncertain|definite|indefinite|clear|unclear|obvious|ambiguous|explicit|implicit|direct|indirect|straightforward|complicated|simple|complex|easy|difficult|hard|soft|rough|smooth|coarse|fine|thick|thin|wide|narrow|broad|slim|fat|thin|heavy|light|dense|sparse|full|empty|complete|incomplete|whole|partial|total|fractional|absolute|relative|exact|approximate|precise|imprecise|accurate|inaccurate|correct|incorrect|right|wrong|proper|improper|appropriate|inappropriate|suitable|unsuitable|fit|unfit|perfect|imperfect|flawless|flawed|ideal|realistic|optimal|suboptimal|maximum|minimum|optimal|best|worst|better|worse|superior|inferior|higher|lower|greater|lesser|more|less|most|least|first|last|initial|final|primary|secondary|main|auxiliary|principal|associate|chief|deputy|senior|junior|head|assistant|lead|support|key|minor|major|significant|insignificant|important|unimportant|essential|nonessential|critical|noncritical|vital|nonvital|crucial|noncrucial|fundamental|superficial|deep|shallow|profound|simple|complex|basic|advanced|elementary|sophisticated|primitive|modern|ancient|old|new|young|mature|immature|ripe|unripe|fresh|stale|raw|cooked|natural|processed|organic|synthetic|pure|impure|clean|dirty|sterile|contaminated|hygienic|unhygienic|safe|unsafe|secure|insecure|protected|unprotected|guarded|unguarded|monitored|unmonitored|supervised|unsupervised|controlled|uncontrolled|regulated|unregulated|restricted|unrestricted|limited|unlimited|finite|infinite|bounded|unbounded|closed|open|accessible|inaccessible|available|unavailable|present|absent|existing|nonexistent|real|imaginary|actual|potential|theoretical|practical|experimental|empirical|hypothetical|observed|unobserved|measured|unmeasured|calculated|estimated|approximate|exact|precise|rough|detailed|general|specific|broad|narrow|wide|tight|loose|strict|lenient|hard|soft|tough|easy|simple|difficult|complex|complicated|straightforward|direct|indirect|immediate|delayed|instant|gradual|sudden|abrupt|smooth|jerky|steady|unsteady|regular|irrregular|constant|variable|fixed|flexible|stable|unstable|permanent|temporary|lasting|fleeting|enduring|transient|durable|fragile|strong|weak|powerful|powerless|effective|ineffective|efficient|inefficient|productive|unproductive|useful|useless|helpful|harmful|beneficial|detrimental|advantageous|disadvantageous|positive|negative|favorable|unfavorable|good|bad|right|wrong|correct|incorrect|proper|improper|appropriate|inappropriate)\s+(?:performance|price|quality|design|feature|function|capability|ability|skill|talent|capacity|power|strength|speed|size|weight|dimension|measurement|specification|standard|requirement|condition|state|status|situation|circumstance|factor|element|component|part|section|portion|segment|piece|item|unit|module|system|structure|framework|architecture|layout|format|style|type|kind|sort|variety|category|class|group|set|collection|series|range|spectrum|scale|level|degree|extent|scope|reach|span|length|width|height|depth|thickness|diameter|radius|circumference|perimeter|area|volume|capacity|size|magnitude|amount|quantity|number|count|total|sum|average|mean|median|mode|range|variance|deviation|standard|deviation|error|accuracy|precision|tolerance|margin|buffer|reserve|surplus|deficit|shortage|excess|abundance|scarcity|plenty|wealth|poverty|richness|poorness|success|failure|victory|defeat|win|loss|gain|profit|benefit|advantage|disadvantage|pro|con|positive|negative|good|bad|right|wrong|correct|incorrect|true|false|real|fake|genuine|artificial|natural|synthetic|organic|inorganic|living|dead|alive|lifeless|animate|inanimate|active|passive|dynamic|static|moving|stationary|mobile|immobile|portable|fixed|flexible|rigid|soft|hard|smooth|rough|even|uneven|flat|curved|straight|bent|twisted|crooked|level|slanted|vertical|horizontal|parallel|perpendicular|diagonal|angular|round|square|rectangular|triangular|circular|oval|elliptical|spherical|cylindrical|conical|pyramidal|cubic|tetrahedral|octahedral|hexagonal|pentagonal|polygonal|irregular|regular|symmetrical|asymmetrical|balanced|unbalanced|stable|unstable|steady|unsteady|firm|loose|tight|slack|tense|relaxed|stiff|limber|rigid|flexible|elastic|plastic|brittle|ductile|malleable|hard|soft|tough|fragile|strong|weak|durable|perishable|lasting|temporary|permanent|transient|stable|unstable|volatile|inert|reactive|active|passive|energetic|lethargic|vigorous|feeble|powerful|powerless|mighty|helpless|dominant|submissive|aggressive|defensive|offensive|protective|destructive|constructive|creative|analytical|logical|rational|irrational|reasonable|unreasonable|sensible|nonsensical|practical|impractical|realistic|unrealistic|optimistic|pessimistic|hopeful|despairing|confident|insecure|sure|unsure|certain|uncertain|definite|indefinite|clear|unclear|obvious|ambiguous|explicit|implicit|direct|indirect|straightforward|complicated|simple|complex|easy|difficult|hard|soft|rough|smooth|coarse|fine|thick|thin|wide|narrow|broad|slim|fat|thin|heavy|light|dense|sparse|full|empty|complete|incomplete|whole|partial|total|fractional|absolute|relative|exact|approximate|precise|imprecise|accurate|inaccurate|correct|incorrect|right|wrong|proper|improper|appropriate|inappropriate|suitable|unsuitable|fit|unfit|perfect|imperfect|flawless|flawed|ideal|realistic|optimal|suboptimal|maximum|minimum|optimal|best|worst|better|worse|superior|inferior|higher|lower|greater|lesser|more|less|most|least|first|last|initial|final|primary|secondary|main|auxiliary|principal|associate|chief|deputy|senior|junior|head|assistant|lead|support|key|minor|major|significant|insignificant|important|unimportant|essential|nonessential|critical|noncritical|vital|nonvital|crucial|noncrucial|fundamental|superficial|deep|shallow|profound|simple|complex|basic|advanced|elementary|sophisticated|primitive|modern|ancient|old|new|young|mature|immature|ripe|unripe|fresh|stale|raw|cooked|natural|processed|organic|synthetic|pure|impure|clean|dirty|sterile|contaminated|hygienic|unhygienic|safe|unsafe|secure|insecure|protected|unprotected|guarded|unguarded|monitored|unmonitored|supervised|unsupervised|controlled|uncontrolled|regulated|unregulated|restricted|unrestricted|limited|unlimited|finite|infinite|bounded|unbounded|closed|open|accessible|inaccessible|available|unavailable|present|absent|existing|nonexistent|real|imaginary|actual|potential|theoretical|practical|experimental|empirical|hypothetical|observed|unobserved|measured|unmeasured|calculated|estimated|approximate|exact|precise|rough|detailed|general|specific|broad|narrow|wide|tight|loose|strict|lenient|hard|soft|tough|easy|simple|difficult|complex|complicated|straightforward|direct|indirect|immediate|delayed|instant|gradual|sudden|abrupt|smooth|jerky|steady|unsteady|regular|irrregular|constant|variable|fixed|flexible|stable|unstable|permanent|temporary|lasting|fleeting|enduring|transient|durable|fragile|strong|weak|powerful|powerless|effective|ineffective|efficient|inefficient|productive|unproductive|useful|useless|helpful|harmful|beneficial|detrimental|advantageous|disadvantageous|positive|negative|favorable|unfavorable|good|bad|right|wrong|correct|incorrect|proper|improper|appropriate|inappropriate)\b',
+        r'\b(performance|price|quality|design|feature|function|capability|ability|skill|talent|capacity|power|strength|speed|size|weight|dimension|measurement|specification|standard|requirement|condition|state|status|situation|circumstance|factor|element|component|part|section|portion|segment|piece|item|unit|module|system|structure|framework|architecture|layout|format|style|type|kind|sort|variety|category|class|group|set|collection|series|range|spectrum|scale|level|degree|extent|scope|reach|span|length|width|height|depth|thickness|diameter|radius|circumference|perimeter|area|volume|capacity|size|magnitude|amount|quantity|number|count|total|sum|average|mean|median|mode|range|variance|deviation|standard|deviation|error|accuracy|precision|tolerance|margin|buffer|reserve|surplus|deficit|shortage|excess|abundance|scarcity|plenty|wealth|poverty|richness|poorness|success|failure|victory|defeat|win|loss|gain|profit|benefit|advantage|disadvantage|pro|con|positive|negative|good|bad|right|wrong|correct|incorrect|true|false|real|fake|genuine|artificial|natural|synthetic|organic|inorganic|living|dead|alive|lifeless|animate|inanimate|active|passive|dynamic|static|moving|stationary|mobile|immobile|portable|fixed|flexible|rigid|soft|hard|smooth|rough|even|uneven|flat|curved|straight|bent|twisted|crooked|level|slanted|vertical|horizontal|parallel|perpendicular|diagonal|angular|round|square|rectangular|triangular|circular|oval|elliptical|spherical|cylindrical|conical|pyramidal|cubic|tetrahedral|octahedral|hexagonal|pentagonal|polygonal|irregular|regular|symmetrical|asymmetrical|balanced|unbalanced|stable|unstable|steady|unsteady|firm|loose|tight|slack|tense|relaxed|stiff|limber|rigid|flexible|elastic|plastic|brittle|ductile|malleable|hard|soft|tough|fragile|strong|weak|durable|perishable|lasting|temporary|permanent|transient|stable|unstable|volatile|inert|reactive|active|passive|energetic|lethargic|vigorous|feeble|powerful|powerless|mighty|helpless|dominant|submissive|aggressive|defensive|offensive|protective|destructive|constructive|creative|analytical|logical|rational|irrational|reasonable|unreasonable|sensible|nonsensical|practical|impractical|realistic|unrealistic|optimistic|pessimistic|hopeful|despairing|confident|insecure|sure|unsure|certain|uncertain|definite|indefinite|clear|unclear|obvious|ambiguous|explicit|implicit|direct|indirect|straightforward|complicated|simple|complex|easy|difficult|hard|soft|rough|smooth|coarse|fine|thick|thin|wide|narrow|broad|slim|fat|thin|heavy|light|dense|sparse|full|empty|complete|incomplete|whole|partial|total|fractional|absolute|relative|exact|approximate|precise|imprecise|accurate|inaccurate|correct|incorrect|right|wrong|proper|improper|appropriate|inappropriate)\b',
+    ]
+    
+    for sent in sentences:
+        for pattern in patterns:
+            matches = re.findall(pattern, sent.lower())
+            for match in matches:
+                aspect = match.strip()
+                if len(aspect) >= 3 and aspect not in _GENERIC_TERMS:
+                    aspects.append(aspect)
+    
+    return aspects
+
 def _extract_aspects_from_dependencies(sentences: List[str]) -> List[Tuple[str, float]]:
     """
-    Extract aspects using dependency parsing.
-    Looks for nouns connected to opinion words via amod, nsubj, dobj relations.
+    Extract aspects using simple regex patterns (replacing spaCy dependency parsing).
+    Looks for nouns connected to opinion words via simple patterns.
     """
-    nlp = _get_nlp()
-    if nlp is None:
-        return []
-    
     aspects = []
     
     for sent in sentences:
-        doc = nlp(sent)
-        for token in doc:
-            if token.pos_ not in ("NOUN", "PROPN"):
-                continue
-            if len(token.text) < 3:
-                continue
-            
-            strength = 0.0
-            
-            # amod: "great performance" → performance
-            for child in token.children:
-                if child.dep_ == "amod" and child.lemma_.lower() in _OPINION_WORDS:
-                    strength = max(strength, 1.0)
-            
-            # nsubj / dobj: "performance is great" or "loved the performance"
-            if token.dep_ in ("nsubj", "dobj", "nsubjpass"):
-                head = token.head
-                if head.lemma_.lower() in _OPINION_WORDS:
-                    strength = max(strength, 0.8)
-                for sibling in head.children:
-                    if sibling.dep_ in ("acomp", "attr") and sibling.lemma_.lower() in _OPINION_WORDS:
-                        strength = max(strength, 0.9)
-            
-            if strength == 0.0:
-                continue
-            
-            # Build phrase - include compound children
-            compounds = [
-                c.text.lower() for c in token.children
-                if c.dep_ == "compound" and len(c.text) > 2
-            ]
-            phrase = (" ".join(compounds) + " " + token.lemma_.lower()).strip()
-            aspects.append((phrase, strength))
+        # Simple pattern matching for aspect extraction
+        patterns = [
+            (r'\b(good|great|excellent|amazing|fantastic|wonderful|perfect|outstanding|impressive|strong|fast|large|big|bright|clear|smooth|comfortable|easy|simple|reliable|durable|stable|accurate|precise|efficient|effective|useful|helpful|beneficial|advantageous|positive)\s+(\w+)\b', 1.0),
+            (r'\b(bad|poor|terrible|awful|horrible|disappointing|weak|slow|small|tiny|dim|blurry|rough|uncomfortable|difficult|complex|unreliable|fragile|unstable|inaccurate|imprecise|inefficient|ineffective|useless|harmful|detrimental|disadvantageous|negative)\s+(\w+)\b', -1.0),
+            (r'\b(\w+)\s+(is|was|are|were)\s+(good|great|excellent|amazing|fantastic|wonderful|perfect|outstanding|impressive|strong|fast|large|big|bright|clear|smooth|comfortable|easy|simple|reliable|durable|stable|accurate|precise|efficient|effective|useful|helpful|beneficial|advantageous|positive)\b', 0.8),
+            (r'\b(\w+)\s+(is|was|are|were)\s+(bad|poor|terrible|awful|horrible|disappointing|weak|slow|small|tiny|dim|blurry|rough|uncomfortable|difficult|complex|unreliable|fragile|unstable|inaccurate|imprecise|inefficient|ineffective|useless|harmful|detrimental|disadvantageous|negative)\b', -0.8),
+        ]
+        
+        for pattern, strength in patterns:
+            matches = re.findall(pattern, sent.lower())
+            for match in matches:
+                if isinstance(match, tuple):
+                    aspect = match[-1]  # Get the last element (the aspect)
+                else:
+                    aspect = match
+                
+                if len(aspect) >= 3 and aspect not in _GENERIC_TERMS:
+                    aspects.append((aspect, strength))
     
     return aspects
 
 def _extract_aspects_from_noun_chunks(sentences: List[str]) -> List[str]:
     """
-    Extract aspects using noun chunks.
+    Extract aspects using simple regex patterns (replacing spaCy noun chunks).
     Finds noun phrases that might represent aspects.
     """
-    nlp = _get_nlp()
-    if nlp is None:
-        return []
-    
     aspects = []
     
+    # Simple regex patterns for noun phrase extraction
+    patterns = [
+        r'\b(?:the|a|an)?\s*([a-z]+\s+(?:performance|price|quality|design|feature|function|capability|ability|skill|talent|capacity|power|strength|speed|size|weight|dimension|measurement|specification|standard|requirement|condition|state|status|situation|circumstance|factor|element|component|part|section|portion|segment|piece|item|unit|module|system|structure|framework|architecture|layout|format|style|type|kind|sort|variety|category|class|group|set|collection|series|range|spectrum|scale|level|degree|extent|scope|reach|span|length|width|height|depth|thickness|diameter|radius|circumference|perimeter|area|volume|capacity|size|magnitude|amount|quantity|number|count|total|sum|average|mean|median|mode|range|variance|deviation|standard|deviation|error|accuracy|precision|tolerance|margin|buffer|reserve|surplus|deficit|shortage|excess|abundance|scarcity|plenty|wealth|poverty|richness|poorness|success|failure|victory|defeat|win|loss|gain|profit|benefit|advantage|disadvantage|pro|con|positive|negative|good|bad|right|wrong|correct|incorrect|true|false|real|fake|genuine|artificial|natural|synthetic|organic|inorganic|living|dead|alive|lifeless|animate|inanimate|active|passive|dynamic|static|moving|stationary|mobile|immobile|portable|fixed|flexible|rigid|soft|hard|smooth|rough|even|uneven|flat|curved|straight|bent|twisted|crooked|level|slanted|vertical|horizontal|parallel|perpendicular|diagonal|angular|round|square|rectangular|triangular|circular|oval|elliptical|spherical|cylindrical|conical|pyramidal|cubic|tetrahedral|octahedral|hexagonal|pentagonal|polygonal|irregular|regular|symmetrical|asymmetrical|balanced|unbalanced|stable|unstable|steady|unsteady|firm|loose|tight|slack|tense|relaxed|stiff|limber|rigid|flexible|elastic|plastic|brittle|ductile|malleable|hard|soft|tough|fragile|strong|weak|durable|perishable|lasting|temporary|permanent|transient|stable|unstable|volatile|inert|reactive|active|passive|energetic|lethargic|vigorous|feeble|powerful|powerless|mighty|helpless|dominant|submissive|aggressive|defensive|offensive|protective|destructive|constructive|creative|analytical|logical|rational|irrational|reasonable|unreasonable|sensible|nonsensical|practical|impractical|realistic|unrealistic|optimistic|pessimistic|hopeful|despairing|confident|insecure|sure|unsure|certain|uncertain|definite|indefinite|clear|unclear|obvious|ambiguous|explicit|implicit|direct|indirect|straightforward|complicated|simple|complex|easy|difficult|hard|soft|rough|smooth|coarse|fine|thick|thin|wide|narrow|broad|slim|fat|thin|heavy|light|dense|sparse|full|empty|complete|incomplete|whole|partial|total|fractional|absolute|relative|exact|approximate|precise|imprecise|accurate|inaccurate|correct|incorrect|right|wrong|proper|improper|appropriate|inappropriate|suitable|unsuitable|fit|unfit|perfect|imperfect|flawless|flawed|ideal|realistic|optimal|suboptimal|maximum|minimum|optimal|best|worst|better|worse|superior|inferior|higher|lower|greater|lesser|more|less|most|least|first|last|initial|final|primary|secondary|main|auxiliary|principal|associate|chief|deputy|senior|junior|head|assistant|lead|support|key|minor|major|significant|insignificant|important|unimportant|essential|nonessential|critical|noncritical|vital|nonvital|crucial|noncrucial|fundamental|superficial|deep|shallow|profound|simple|complex|basic|advanced|elementary|sophisticated|primitive|modern|ancient|old|new|young|mature|immature|ripe|unripe|fresh|stale|raw|cooked|natural|processed|organic|synthetic|pure|impure|clean|dirty|sterile|contaminated|hygienic|unhygienic|safe|unsafe|secure|insecure|protected|unprotected|guarded|unguarded|monitored|unmonitored|supervised|unsupervised|controlled|uncontrolled|regulated|unregulated|restricted|unrestricted|limited|unlimited|finite|infinite|bounded|unbounded|closed|open|accessible|inaccessible|available|unavailable|present|absent|existing|nonexistent|real|imaginary|actual|potential|theoretical|practical|experimental|empirical|hypothetical|observed|unobserved|measured|unmeasured|calculated|estimated|approximate|exact|precise|rough|detailed|general|specific|broad|narrow|wide|tight|loose|strict|lenient|hard|soft|tough|easy|simple|difficult|complex|complicated|straightforward|direct|indirect|immediate|delayed|instant|gradual|sudden|abrupt|smooth|jerky|steady|unsteady|regular|irrregular|constant|variable|fixed|flexible|stable|unstable|permanent|temporary|lasting|fleeting|enduring|transient|durable|fragile|strong|weak|powerful|powerless|effective|ineffective|efficient|inefficient|productive|unproductive|useful|useless|helpful|harmful|beneficial|detrimental|advantageous|disadvantageous|positive|negative|favorable|unfavorable|good|bad|right|wrong|correct|incorrect|proper|improper|appropriate|inappropriate)s)\b',
+        r'\b([a-z]+\s+(?:performance|price|quality|design|feature|function|capability|ability|skill|talent|capacity|power|strength|speed|size|weight|dimension|measurement|specification|standard|requirement|condition|state|status|situation|circumstance|factor|element|component|part|section|portion|segment|piece|item|unit|module|system|structure|framework|architecture|layout|format|style|type|kind|sort|variety|category|class|group|set|collection|series|range|spectrum|scale|level|degree|extent|scope|reach|span|length|width|height|depth|thickness|diameter|radius|circumference|perimeter|area|volume|capacity|size|magnitude|amount|quantity|number|count|total|sum|average|mean|median|mode|range|variance|deviation|standard|deviation|error|accuracy|precision|tolerance|margin|buffer|reserve|surplus|deficit|shortage|excess|abundance|scarcity|plenty|wealth|poverty|richness|poorness|success|failure|victory|defeat|win|loss|gain|profit|benefit|advantage|disadvantage|pro|con|positive|negative|good|bad|right|wrong|correct|incorrect|true|false|real|fake|genuine|artificial|natural|synthetic|organic|inorganic|living|dead|alive|lifeless|animate|inanimate|active|passive|dynamic|static|moving|stationary|mobile|immobile|portable|fixed|flexible|rigid|soft|hard|smooth|rough|even|uneven|flat|curved|straight|bent|twisted|crooked|level|slanted|vertical|horizontal|parallel|perpendicular|diagonal|angular|round|square|rectangular|triangular|circular|oval|elliptical|spherical|cylindrical|conical|pyramidal|cubic|tetrahedral|octahedral|hexagonal|pentagonal|polygonal|irregular|regular|symmetrical|asymmetrical|balanced|unbalanced|stable|unstable|steady|unsteady|firm|loose|tight|slack|tense|relaxed|stiff|limber|rigid|flexible|elastic|plastic|brittle|ductile|malleable|hard|soft|tough|fragile|strong|weak|durable|perishable|lasting|temporary|permanent|transient|stable|unstable|volatile|inert|reactive|active|passive|energetic|lethargic|vigorous|feeble|powerful|powerless|mighty|helpless|dominant|submissive|aggressive|defensive|offensive|protective|destructive|constructive|creative|analytical|logical|rational|irrational|reasonable|unreasonable|sensible|nonsensical|practical|impractical|realistic|unrealistic|optimistic|pessimistic|hopeful|despairing|confident|insecure|sure|unsure|certain|uncertain|definite|indefinite|clear|unclear|obvious|ambiguous|explicit|implicit|direct|indirect|straightforward|complicated|simple|complex|easy|difficult|hard|soft|rough|smooth|coarse|fine|thick|thin|wide|narrow|broad|slim|fat|thin|heavy|light|dense|sparse|full|empty|complete|incomplete|whole|partial|total|fractional|absolute|relative|exact|approximate|precise|imprecise|accurate|inaccurate|correct|incorrect|right|wrong|proper|improper|appropriate|inappropriate|suitable|unsuitable|fit|unfit|perfect|imperfect|flawless|flawed|ideal|realistic|optimal|suboptimal|maximum|minimum|optimal|best|worst|better|worse|superior|inferior|higher|lower|greater|lesser|more|less|most|least|first|last|initial|final|primary|secondary|main|auxiliary|principal|associate|chief|deputy|senior|junior|head|assistant|lead|support|key|minor|major|significant|insignificant|important|unimportant|essential|nonessential|critical|noncritical|vital|nonvital|crucial|noncrucial|fundamental|superficial|deep|shallow|profound|simple|complex|basic|advanced|elementary|sophisticated|primitive|modern|ancient|old|new|young|mature|immature|ripe|unripe|fresh|stale|raw|cooked|natural|processed|organic|synthetic|pure|impure|clean|dirty|sterile|contaminated|hygienic|unhygienic|safe|unsafe|secure|insecure|protected|unprotected|guarded|unguarded|monitored|unmonitored|supervised|unsupervised|controlled|uncontrolled|regulated|unregulated|restricted|unrestricted|limited|unlimited|finite|infinite|bounded|unbounded|closed|open|accessible|inaccessible|available|unavailable|present|absent|existing|nonexistent|real|imaginary|actual|potential|theoretical|practical|experimental|empirical|hypothetical|observed|unobserved|measured|unmeasured|calculated|estimated|approximate|exact|precise|rough|detailed|general|specific|broad|narrow|wide|tight|loose|strict|lenient|hard|soft|tough|easy|simple|difficult|complex|complicated|straightforward|direct|indirect|immediate|delayed|instant|gradual|sudden|abrupt|smooth|jerky|steady|unsteady|regular|irrregular|constant|variable|fixed|flexible|stable|unstable|permanent|temporary|lasting|fleeting|enduring|transient|durable|fragile|strong|weak|powerful|powerless|effective|ineffective|efficient|inefficient|productive|unproductive|useful|useless|helpful|harmful|beneficial|detrimental|advantageous|disadvantageous|positive|negative|favorable|unfavorable|good|bad|right|wrong|correct|incorrect|proper|improper|appropriate|inappropriate)s)\b',
+    ]
+    
     for sent in sentences:
-        doc = nlp(sent)
-        for chunk in doc.noun_chunks:
-            # Strip determiners/articles
-            aspect = chunk.text.lower().strip()
-            aspect = re.sub(r'^(the|a|an|this|that|these|those|my|your|its)\s+', '', aspect)
-            aspect = aspect.strip()
-            
-            if _is_valid_aspect(aspect):
-                aspects.append(aspect)
+        for pattern in patterns:
+            matches = re.findall(pattern, sent.lower())
+            for match in matches:
+                aspect = match.strip()
+                aspect = re.sub(r'^(the|a|an|this|that|these|those|my|your|its)\s+', '', aspect)
+                aspect = aspect.strip()
+                
+                if _is_valid_aspect(aspect):
+                    aspects.append(aspect)
     
     return aspects
 

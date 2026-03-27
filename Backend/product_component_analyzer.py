@@ -9,27 +9,6 @@ from collections import Counter, defaultdict
 
 logger = logging.getLogger(__name__)
 
-# Lazy spaCy loader
-_nlp = None
-
-def _get_nlp():
-    global _nlp
-    if _nlp is not None:
-        return _nlp
-    try:
-        import spacy
-        _nlp = spacy.load("en_core_web_sm")
-    except OSError:
-        try:
-            import spacy
-            from spacy.cli import download
-            download("en_core_web_sm")
-            _nlp = spacy.load("en_core_web_sm")
-        except Exception as e:
-            logger.warning(f"spaCy model unavailable: {e}")
-            _nlp = None
-    return _nlp
-
 # Generic terms to filter out
 _GENERIC_TERMS = {
     "product", "item", "thing", "machine", "device", "unit", "stuff", "one",
@@ -115,22 +94,22 @@ def _is_valid_component(component: str) -> bool:
     return True
 
 def _extract_noun_phrases(text: str) -> List[str]:
-    """Extract noun phrases using spaCy noun chunks."""
-    nlp = _get_nlp()
-    if nlp is None:
-        return []
-    
-    doc = nlp(text)
+    """Extract noun phrases using simple regex patterns."""
+    # Simple regex-based noun phrase extraction
     components = []
     
-    for chunk in doc.noun_chunks:
-        # Strip determiners and articles
-        component = chunk.text.lower().strip()
-        component = re.sub(r'^(the|a|an|this|that|these|those|my|your|its)\s+', '', component)
-        component = component.strip()
-        
-        if _is_valid_component(component):
-            components.append(component)
+    # Pattern for adjectives + nouns
+    patterns = [
+        r'\b([a-z]+\s+(?:processor|memory|storage|screen|display|battery|camera| speaker|keyboard|mouse|trackpad|port|connector|adapter|charger|case|cover|stand|mount|bracket|cable|wire|slot|drive|disk|fan|cooler|heatsink|motherboard|graphics|video|audio|network|wifi|bluetooth|usb|hdmi|displayport|thunderbolt|ethernet|headphone|microphone|sim|sd|card|reader|fingerprint|face|iris|sensor|button|dial|switch|light|led|backlight|touch|gesture|voice|assistant|gps|nfc|infrared|laser|radar|sonar|ultrasonic|pressure|temperature|humidity|motion|accelerometer|gyroscope|magnetometer|compass|altimeter|barometer|thermometer|hygrometer|photometer|spectrometer|microscope|telescope|binoculars|camera|lens|filter|tripod|monopod|gimbal|stabilizer|drone|robot|actuator|motor|servo|stepper|linear|piston|gear|bearing|spring|shock|absorber|damper|coupling|clutch|brake|caliper|rotor|stator|alternator|generator|transformer|inductor|capacitor|resistor|diode|transistor|chip|processor|memory|storage|drive|disk|ssd|hdd|optical|dvd|blu|ray|cd|rom|ram|rom|eprom|eeprom|flash|cache|register|buffer|controller|interface|port|connector|cable|adapter|converter|expander|hub|switch|router|modem|gateway|bridge|repeater|extender|antenna|satellite|receiver|transmitter|amplifier|equalizer|mixer|speaker|headphone|microphone|camera|webcam|projector|monitor|display|screen|touch|panel|lcd|led|oled|amoled|ips|va|tn|qled|mini|led|micro|led|quantum|dot|retina|force|touch|3d|touch|haptic|feedback|vibration|force|pressure|temperature|humidity|light|proximity|motion|gesture|voice|face|iris|fingerprint|palm|vein|dna|heart|rate|blood|pressure|oxygen|glucose|ketone|lactate|ph|salinity|conductivity|turbidity|flow|level|volume|weight|mass|density|viscosity|surface|tension|hardness|softness|elasticity|plasticity|brittleness|ductility|malleability|tensile|strength|compressive|strength|shear|strength|yield|strength|ultimate|strength|fatigue|creep|stress|strain|modulus|young|modulus|bulk|modulus|shear|modulus|poisson|ratio|thermal|expansion|coefficient|thermal|conductivity|electrical|conductivity|resistivity|permittivity|permeability|magnetic|susceptibility|dielectric|constant|loss|tangent|refractive|index|absorption|coefficient|emission|coefficient|reflectance|transmittance|absorbance|scattering|cross|section|optical|depth|penetration|depth|attenuation|length|path|length|mean|free|path|collision|frequency|relaxation|time|spin|lattice|time|correlation|time|coherence|time|decoherence|time|lifetime|decay|time|half|life|mean|life|radiation|dose|exposure|activity|intensity|flux|power|energy|work|heat|enthalpy|entropy|gibbs|free|energy|helmholtz|free|energy|chemical|potential|electrochemical|potential|fermi|level|band|gap|work|function|electron|affinity|ionization|energy|electron|negativity|electronegativity|atomic|radius|ionic|radius|covalent|radius|van|der|waals|radius|bond|length|bond|angle|bond|energy|dipole|moment|polarizability|magnetic|moment|spin|quantum|number|angular|momentum|orbital|energy|level|valence|electron|core|electron|conduction|electron|hole|electron|phonon|photon|exciton|polariton|plasmon|magnon|soliton|polaron|bipolaron|trion|quasiparticle|elementary|particle|composite|particle|subatomic|particle|fundamental|particle|force|carrier|gauge|boson|lepton|quark|gluon|w|boson|z|boson|higgs|boson|graviton|photon|gluon|w|z|higgs|graviton))\b',
+        r'\b(\d+\s*(?:core|cores|thread|threads|bit|bits|byte|bytes|gb|tb|mb|kb|hz|ghz|mhz|w|v|amp|mah|wh|mm|cm|inch|pixel|mp|gb|tb|mb|kb|hz|ghz|mhz|w|v|amp|mah|wh|mm|cm|inch|pixel|mp))\b',
+    ]
+    
+    for pattern in patterns:
+        matches = re.findall(pattern, text.lower())
+        for match in matches:
+            component = match.strip()
+            if _is_valid_component(component):
+                components.append(component)
     
     return components
 

@@ -4,5 +4,3 @@ requests
 beautifulsoup4
 pandas
 numpy
-spacy
-en-core-web-sm==3.7.1

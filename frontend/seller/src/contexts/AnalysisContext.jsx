@@ -8,7 +8,7 @@ export const useAnalysis = () => {
   return context
 }
 
-const API_BASE = import.meta.env.VITE_API_URL || 'https://datathon-production-c1f0.up.railway.app'
+const API_BASE = "https://datathon-production-c1f0.up.railway.app"
 
 export const AnalysisProvider = ({ children }) => {
   const [data, setData] = useState(null)

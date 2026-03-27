@@ -151,7 +151,7 @@ Keep it concise and technical."""
                 model="gpt-3.5-turbo",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=150,
-                temperature=0.3
+                temperature=0
             )
             return response.choices[0].message.content
         
@@ -160,7 +160,7 @@ Keep it concise and technical."""
             response = self.llm_client.generate(
                 prompt=prompt,
                 max_tokens=150,
-                temperature=0.3
+                temperature=0
             )
             return response.text
         

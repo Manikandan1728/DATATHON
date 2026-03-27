@@ -281,7 +281,7 @@ Laptop → CPU, RAM, battery, display
                 model="gpt-3.5-turbo",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=100,
-                temperature=0.3
+                temperature=0
             )
             return response.choices[0].message.content
         
@@ -289,7 +289,7 @@ Laptop → CPU, RAM, battery, display
             response = self.llm_client.generate(
                 prompt=prompt,
                 max_tokens=100,
-                temperature=0.3
+                temperature=0
             )
             return response.text
         else:

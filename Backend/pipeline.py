@@ -70,9 +70,9 @@ def _extract_brand(title: str) -> str:
     t = title.lower()
     for b in known:
         if b.lower() in t:
-            return b
+            return b.lower().strip()
     first = title.split()[0].strip("([{") if title else "Unknown"
-    return first.title() if first else "Unknown"
+    return first.lower().strip() if first else "unknown"
 
 
 
@@ -203,7 +203,7 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
         if key and key not in seen:
             seen.add(key)
             unique.append(p)
-    raw_products = unique[:20]
+    raw_products = unique[:10]
     logger.info(f"Unique products after dedup: {len(raw_products)}")
 
     # Generate components using AI (no scraping needed for components!)
@@ -251,6 +251,15 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
             "scraped_at": p.get("scraped_at", ""),
         })
 
+    # Sort products deterministically by rating (descending) then brand (alphabetical)
+    products = sorted(
+        products,
+        key=lambda x: (-x.get("rating", 0), x.get("brand", ""))
+    )
+    
+    # Limit to top 10 consistently
+    products = products[:10]
+
     # Brand aggregation
     brands: Dict[str, Any] = {}
     for p in products:
@@ -266,10 +275,14 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
 
     brands_out = {}
     for b, info in brands.items():
+        import numpy as np
+        # Use median for stable aggregation
+        median_rating = float(np.median(info["ratings"])) if info["ratings"] else 0
+        median_price = float(np.median(info["prices"])) if info["prices"] else 0
         brands_out[b] = {
             "products": info["products"],
-            "average_rating": round(sum(info["ratings"]) / len(info["ratings"]), 1) if info["ratings"] else 0,
-            "average_price": round(sum(info["prices"]) / len(info["prices"]), 0) if info["prices"] else 0,
+            "average_rating": round(median_rating, 1),
+            "average_price": round(median_price, 0),
             "categories": list(info["categories"]),
         }
 

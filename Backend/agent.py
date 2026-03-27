@@ -18,10 +18,10 @@ def _get_llm():
     openai_key = os.getenv("OPENAI_API_KEY")
     if groq_key:
         from langchain_groq import ChatGroq
-        return ChatGroq(model="llama-3.3-70b-versatile", temperature=0.2, api_key=groq_key)
+        return ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=groq_key)
     if openai_key:
         from langchain_openai import ChatOpenAI
-        return ChatOpenAI(model="gpt-4o-mini", temperature=0.2, api_key=openai_key)
+        return ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=openai_key)
     raise EnvironmentError(
         "No LLM API key found. Set GROQ_API_KEY (free at console.groq.com) or OPENAI_API_KEY."
     )

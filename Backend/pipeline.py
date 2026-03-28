@@ -205,6 +205,16 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
             unique.append(p)
     raw_products = unique[:10]
     logger.info(f"Unique products after dedup: {len(raw_products)}")
+    
+    # Sort products deterministically immediately after scraping (before any analysis)
+    raw_products = sorted(
+        raw_products,
+        key=lambda x: (-x.get("rating", 0), x.get("brand", ""))
+    )
+    
+    # Limit to top 10 consistently
+    raw_products = raw_products[:10]
+    logger.info(f"Products after sorting and limiting: {len(raw_products)}")
 
     # Generate components using AI (no scraping needed for components!)
     logger.info(f"Generating AI components for: {query}")
@@ -251,16 +261,7 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
             "scraped_at": p.get("scraped_at", ""),
         })
 
-    # Sort products deterministically by rating (descending) then brand (alphabetical)
-    products = sorted(
-        products,
-        key=lambda x: (-x.get("rating", 0), x.get("brand", ""))
-    )
-    
-    # Limit to top 10 consistently
-    products = products[:10]
-
-    # Brand aggregation
+    # Brand aggregation (products already sorted and limited)
     brands: Dict[str, Any] = {}
     for p in products:
         b = p["brand"]

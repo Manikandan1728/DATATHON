@@ -205,7 +205,7 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
         if key and key not in seen:
             seen.add(key)
             unique.append(p)
-    raw_products = unique[:10]
+    raw_products = unique[:50]  # Get more products for stable brand aggregation
     logger.info(f"Unique products after dedup: {len(raw_products)}")
     
     def safe_rating(value):
@@ -218,19 +218,56 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
         except:
             return 0.0
 
-    # clean ratings
+    # Group by brand first for stable aggregation
+    brand_map = {}
     for p in raw_products:
-        p["rating"] = safe_rating(p.get("rating", 0))
+        brand = p.get("brand", "").lower()
+        rating = safe_rating(p.get("rating"))
+        
+        if brand not in brand_map:
+            brand_map[brand] = []
+        
+        brand_map[brand].append(rating)
 
-    # deterministic sort
-    raw_products = sorted(
-        raw_products,
-        key=lambda x: (-x["rating"], x.get("brand", ""))
+    # Compute brand medians for stable ratings
+    import numpy as np
+    brand_scores = []
+    for brand, ratings in brand_map.items():
+        if ratings:  # Only include brands with ratings
+            brand_scores.append({
+                "brand": brand,
+                "rating": float(np.median(ratings)),
+                "count": len(ratings)  # Keep count for reference
+            })
+
+    # Sort brands by median rating (deterministic)
+    brand_scores = sorted(
+        brand_scores,
+        key=lambda x: (-x["rating"], x["brand"])
     )
 
-    # top 10
-    raw_products = raw_products[:10]
-    logger.info(f"Products after sorting and limiting: {len(raw_products)}")
+    # Select top brands (stable selection)
+    top_brands = brand_scores[:10]
+    logger.info(f"Top brands selected: {len(top_brands)}")
+
+    # Now get representative products from top brands
+    selected_products = []
+    for brand_info in top_brands:
+        brand = brand_info["brand"]
+        # Get all products from this brand
+        brand_products = [p for p in raw_products if p.get("brand", "").lower() == brand]
+        # Sort products by rating deterministically
+        brand_products = sorted(
+            brand_products,
+            key=lambda x: (-safe_rating(x.get("rating")), x.get("title", ""))
+        )
+        # Take top product from this brand
+        if brand_products:
+            selected_products.append(brand_products[0])
+    
+    # Use the selected products for analysis
+    raw_products = selected_products
+    logger.info(f"Final products for analysis: {len(raw_products)}")
 
     # Generate components using AI (no scraping needed for components!)
     logger.info(f"Generating AI components for: {query}")
@@ -282,31 +319,21 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
             "scraped_at": p.get("scraped_at", ""),
         })
 
-    # Brand aggregation (products already sorted and limited)
-    brands: Dict[str, Any] = {}
-    for p in products:
-        b = p["brand"]
-        if b not in brands:
-            brands[b] = {"products": [], "ratings": [], "prices": [], "categories": set()}
-        brands[b]["products"].append(p["name"])
-        if p["rating"] > 0:
-            brands[b]["ratings"].append(p["rating"])
-        if p["price"] > 0:
-            brands[b]["prices"].append(p["price"])
-        brands[b]["categories"].add(query)  # Use query as category
-
+    # Brand aggregation using pre-computed brand medians (stable)
     brands_out = {}
-    for b, info in brands.items():
-        import numpy as np
-        # Use median for stable aggregation
-        median_rating = float(np.median(info["ratings"])) if info["ratings"] else 0
-        median_price = float(np.median(info["prices"])) if info["prices"] else 0
-        brands_out[b] = {
-            "products": info["products"],
-            "average_rating": round(median_rating, 1),
-            "average_price": round(median_price, 0),
-            "categories": list(info["categories"]),
-        }
+    for brand_info in top_brands:
+        brand = brand_info["brand"]
+        # Find products for this brand
+        brand_products = [p for p in products if p["brand"] == brand]
+        if brand_products:
+            # Use the pre-computed median rating
+            brands_out[brand] = {
+                "products": [p["name"] for p in brand_products],
+                "average_rating": round(brand_info["rating"], 1),
+                "average_price": round(float(np.median([p["price"] for p in brand_products if p["price"] > 0])), 0) if brand_products else 0,
+                "categories": list(set([query])),  # Use query as category
+                "product_count": brand_info["count"]  # Include product count for reference
+            }
 
     # Component winners
     component_winners: Dict[str, str] = {}

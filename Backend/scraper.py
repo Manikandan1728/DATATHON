@@ -145,15 +145,19 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
             headers=_rapidapi_headers(),
 
-            params={
+            params = {
+
+                "engine": "google_shopping",
 
                 "q": query,
 
-                "country": "us",
+                "num": 20,
 
-                "language": "en",
+                "hl": "en",
 
-                "limit": str(min(max_products, 10)),
+                "gl": "us",
+
+                "api_key": api_key
 
             },
 
@@ -1171,11 +1175,23 @@ def scrape_all_sites(query: str, max_per_site: int = 5) -> List[Dict[str, Any]]:
             if products_with_reviews:
                 return products_with_reviews
             else:
-                logger.warning("No real reviews found, returning products without reviews for analysis")
-                return products  # Return products but without fake reviews
+                logger.warning("No real reviews found, trying fallback search...")
+                # Fallback search with space instead of +
+                fallback_query = query.replace("+", " ")
+                logger.info("Retrying with fallback query: %s", fallback_query)
+                fallback_products = search_products(fallback_query, max_products=max_per_site * 3)
+                if fallback_products:
+                    return fallback_products
+                else:
+                    logger.warning("No real reviews found, returning products without reviews for analysis")
+                    return products  # Return products but without fake reviews
         
         else:
-            logger.info("RapidAPI returned no products, falling back...")
+            logger.info("RapidAPI returned no products, trying fallback search...")
+            # Fallback search with space instead of +
+            fallback_query = query.replace("+", " ")
+            logger.info("Retrying with fallback query: %s", fallback_query)
+            products = search_products(fallback_query, max_products=max_per_site * 3)
     else:
         logger.warning("No RAPIDAPI_KEY found - cannot fetch real reviews")
 

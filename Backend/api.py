@@ -75,7 +75,10 @@ def analyze(req: AnalyzeRequest, background_tasks: BackgroundTasks):
         "job_id": job_id, "status": "pending", "result": None,
         "error": None, "created_at": datetime.now().isoformat(), "completed_at": None
     }
-    background_tasks.add_task(_run_job, job_id, req.query.strip(), req.max_per_site)
+    # Sanitize search query
+    query = req.query.strip().lower()
+    query = query.replace(" ", "+")
+    background_tasks.add_task(_run_job, job_id, query, req.max_per_site)
     return jobs[job_id]
 
 @app.get("/jobs/{job_id}")
@@ -108,6 +111,9 @@ def analyze_sync(req: AnalyzeRequest):
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="Query cannot be empty")
     try:
-        return run_pipeline(req.query.strip(), max_per_site=req.max_per_site)
+        # Sanitize search query
+        query = req.query.strip().lower()
+        query = query.replace(" ", "+")
+        return run_pipeline(query, max_per_site=req.max_per_site)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

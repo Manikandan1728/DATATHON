@@ -107,25 +107,29 @@ def _component_scores(
         r = json.loads(_tool_sentiment_score(json.dumps(reviews)))
         scores[comp] = round((r["score"] + 1) * 2.5, 2)
 
-    # Fill in remaining components with differentiated scores
+    # Fill in remaining components with deterministic scores
     if len(scores) < 3:
-        import random
-        rng = random.Random(_product_hash_seed(title, price, product_index))
-        base = round((rating / 5.0) * 5.0, 2) if rating > 0 else rng.uniform(2.5, 4.5)
+        import hashlib
+        base = round((rating / 5.0) * 5.0, 2) if rating > 0 else 3.5
 
         for comp in relevant_comps:
             if comp in scores:
                 continue
-            comp_seed = _product_hash_seed(f"{title}_{comp}", price, product_index)
-            comp_rng = random.Random(comp_seed)
-            variation = comp_rng.uniform(-1.5, 1.5)
+            # Use deterministic hash for consistent scoring
+            comp_seed = f"{title}_{comp}_{price}_{product_index}"
+            hash_val = int(hashlib.md5(comp_seed.encode()).hexdigest()[:8], 16)
+            # Generate consistent variation between -1.5 and 1.5
+            variation = -1.5 + (hash_val % 1000) / 1000 * 3.0
             raw = base + variation
             scores[comp] = round(max(0.5, min(5.0, raw)), 2)
 
         if "price_value" in relevant_comps and price > 0:
-            pv_rng = random.Random(_product_hash_seed(f"{title}_pv", price, product_index))
+            # Deterministic price scoring
             price_score = max(1.0, min(5.0, 5.5 - (price / 400.0)))
-            scores["price_value"] = round(price_score + pv_rng.uniform(-0.5, 0.5), 2)
+            pv_seed = f"{title}_pv_{price}_{product_index}"
+            pv_hash = int(hashlib.md5(pv_seed.encode()).hexdigest()[:8], 16)
+            pv_variation = -0.5 + (pv_hash % 1000) / 1000 * 1.0
+            scores["price_value"] = round(price_score + pv_variation, 2)
 
     return scores
 
@@ -135,11 +139,9 @@ def _sentiment_breakdown(reviews: List[str], rating: float = 0.0, title: str = "
         r = json.loads(_tool_sentiment_score(json.dumps(reviews)))
         score = r["score"]
     elif rating > 0:
-        # Add product-specific variation so not all products look identical
-        import random
-        rng = random.Random(_product_hash_seed(title, 0, index))
+        # Deterministic sentiment based on rating only
         base_score = round((rating - 3.0) / 2.0, 3)
-        score = round(base_score + rng.uniform(-0.15, 0.15), 3)
+        score = base_score
     else:
         score = 0.0
     pos = max(0.0, min(1.0, (score + 1) / 2))
@@ -253,12 +255,17 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
         # Generate component scores for components from query
         comp_scores = {}
         for component in components_from_query:
-            # Simple scoring based on rating with some variation
-            import random
-            rng = random.Random(_product_hash_seed(f"{title}_{component}", price_val, idx))
-            base_score = (rating_val / 5.0) * 5.0 if rating_val > 0 else rng.uniform(2.5, 4.5)
-            variation = rng.uniform(-1.0, 1.0)
-            comp_scores[component] = round(max(0.5, min(5.0, base_score + variation)), 2)
+            # Deterministic scoring based on rating only (no random variation)
+            if rating_val > 0:
+                # Base score directly from rating (0-5 scale)
+                comp_scores[component] = round(rating_val, 2)
+            else:
+                # For unrated products, use deterministic hash-based score
+                import hashlib
+                hash_seed = f"{title}_{component}_{price_val}"
+                hash_val = int(hashlib.md5(hash_seed.encode()).hexdigest()[:8], 16)
+                # Use hash to generate consistent score between 2.5-4.5
+                comp_scores[component] = round(2.5 + (hash_val % 1000) / 1000 * 2.0, 2)
         
         sentiment = _sentiment_breakdown(reviews_list, rating=rating_val, title=title, index=idx)
         products.append({
@@ -331,18 +338,15 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
 
     # Fallback: derive issues from per-product rating + price analysis
     if not customer_issues and products:
-        import random
         low_rated = [p for p in products if 0 < p["rating"] < 3.5]
         mid_rated = [p for p in products if 3.5 <= p["rating"] < 4.0]
         high_priced = [p for p in products if p["price"] > 500]
         prices = [p["price"] for p in products if p["price"] > 0]
         avg_price = sum(prices) / len(prices) if prices else 0
 
-        # Vary issue percentages per product to avoid identical outputs
-        rng = random.Random(_product_hash_seed(query, avg_price, len(products)))
-
+        # Deterministic issue percentages based on actual data
         if low_rated:
-            pct = round(len(low_rated) / len(products) * 100 + rng.uniform(-3, 3), 1)
+            pct = round(len(low_rated) / len(products) * 100, 1)
             customer_issues.append({
                 "issue": "Low Customer Satisfaction",
                 "percentage": max(1.0, pct),
@@ -350,7 +354,7 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
                 "affected_products": [p["name"][:40] for p in low_rated[:4]],
             })
         if mid_rated:
-            pct = round(len(mid_rated) / len(products) * 100 + rng.uniform(-2, 2), 1)
+            pct = round(len(mid_rated) / len(products) * 100, 1)
             customer_issues.append({
                 "issue": "Mixed Reviews",
                 "percentage": max(1.0, pct),
@@ -358,7 +362,7 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
                 "affected_products": [p["name"][:40] for p in mid_rated[:4]],
             })
         if high_priced:
-            pct = round(len(high_priced) / len(products) * 100 + rng.uniform(-2, 2), 1)
+            pct = round(len(high_priced) / len(products) * 100, 1)
             customer_issues.append({
                 "issue": "High Price Concern",
                 "percentage": max(1.0, pct),
@@ -368,7 +372,7 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
         if avg_price > 0:
             above_avg = [p for p in products if p["price"] > avg_price * 1.3]
             if above_avg:
-                pct = round(len(above_avg) / len(products) * 100 + rng.uniform(-2, 2), 1)
+                pct = round(len(above_avg) / len(products) * 100, 1)
                 customer_issues.append({
                     "issue": "Price Above Market Average",
                     "percentage": max(1.0, pct),

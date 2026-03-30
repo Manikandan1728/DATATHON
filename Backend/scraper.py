@@ -332,7 +332,7 @@ def fetch_product_reviews(product_id: str, max_reviews: int = 15) -> List[str]:
 
                 reviews.append(body[:400])
 
-        logger.info("Reviews fetched: %d for product", len(reviews))
+        logger.info("Real reviews fetched: %d for product %s", len(reviews), product_id)
 
     except Exception as e:
 
@@ -979,7 +979,7 @@ def generate_sample_products(query: str, max_products: int = 5) -> List[Dict[str
 
                 "product_id": f"ai_{query}_{i}",
 
-                "reviews": random.sample(sample_reviews, min(3, len(sample_reviews))),
+                "reviews": [],  # No fake reviews - only real reviews from API
 
                 "scraped_at": _now(),
 
@@ -1121,7 +1121,7 @@ def generate_sample_products(query: str, max_products: int = 5) -> List[Dict[str
 
             "product_id": f"sample_{category}_{i}",
 
-            "reviews": random.sample(sample_reviews, min(3, len(sample_reviews))),
+            "reviews": [],  # No fake reviews - only real reviews from API
 
             "scraped_at": _now(),
 
@@ -1153,33 +1153,32 @@ def scrape_all_sites(query: str, max_per_site: int = 5) -> List[Dict[str, Any]]:
 
 
 
-    # Primary: RapidAPI
-
+    # Primary: RapidAPI - Always try to get real reviews first
     if os.getenv("RAPIDAPI_KEY"):
-
-        products = search_products(query, max_products=max_per_site * 2)
-
+        products = search_products(query, max_products=max_per_site * 3)  # Get more products for better selection
+        
         if products:
-
-            # Try to enrich with reviews for top 3 products
-
-            for p in products[:3]:
-
+            # Try to enrich ALL products with real reviews (not just top 3)
+            for p in products:
                 pid = p.get("product_id", "")
-
-                if pid and not p["reviews"]:
-
-                    p["reviews"] = fetch_product_reviews(pid, max_reviews=10)
-
+                if pid and not p.get("reviews"):
+                    p["reviews"] = fetch_product_reviews(pid, max_reviews=15)  # Get more reviews
                     _delay(0.2, 0.5)
-
-            logger.info("Total via RapidAPI: %d products", len(products))
-
-            return products
-
+            
+            # Filter out products without real reviews
+            products_with_reviews = [p for p in products if p.get("reviews")]
+            logger.info("Products with real reviews: %d out of %d", len(products_with_reviews), len(products))
+            
+            if products_with_reviews:
+                return products_with_reviews
+            else:
+                logger.warning("No real reviews found, returning products without reviews for analysis")
+                return products  # Return products but without fake reviews
+        
         else:
-
-            logger.info("RapidAPI returned no products (likely quota exceeded), falling back...")
+            logger.info("RapidAPI returned no products, falling back...")
+    else:
+        logger.warning("No RAPIDAPI_KEY found - cannot fetch real reviews")
 
 
 

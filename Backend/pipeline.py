@@ -206,10 +206,21 @@ def run_pipeline(query: str, max_per_site: int = 5) -> Dict[str, Any]:
     raw_products = unique[:10]
     logger.info(f"Unique products after dedup: {len(raw_products)}")
     
+    # Safe numeric conversion for ratings
+    def safe_float(value):
+        try:
+            return float(str(value).replace("out of 5", "").strip())
+        except:
+            return 0.0
+    
+    # Pre-process ratings to ensure consistent numeric values
+    for p in raw_products:
+        p["rating"] = safe_float(p.get("rating"))
+    
     # Sort products deterministically immediately after scraping (before any analysis)
     raw_products = sorted(
         raw_products,
-        key=lambda x: (-x.get("rating", 0), x.get("brand", ""))
+        key=lambda x: (-x["rating"], x.get("brand", ""))
     )
     
     # Limit to top 10 consistently

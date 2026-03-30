@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 
 
-RAPIDAPI_HOST = "real-time-product-search.p.rapidapi.com"
+RAPIDAPI_HOST = "real-time-amazon-data.p.rapidapi.com"
 
 
 
@@ -141,24 +141,16 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
         resp = requests.get(
 
-            f"https://{RAPIDAPI_HOST}/search-light",
+            f"https://{RAPIDAPI_HOST}/search",
 
             headers=_rapidapi_headers(),
 
-            params = {
-
-                "engine": "google_shopping",
-
-                "q": query,
-
-                "num": 20,
-
-                "hl": "en",
-
-                "gl": "us",
-
-                "api_key": api_key
-
+            params={
+                "query": query,
+                "page": "1",
+                "country": "US",
+                "sort_by": "RELEVANCE",
+                "product_condition": "ALL"
             },
 
             timeout=25,
@@ -171,25 +163,14 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
 
 
-        # data.data.products is the correct path
-
-        items = []
-
-        raw_data = data.get("data", {})
-
-        if isinstance(raw_data, dict):
-
-            items = raw_data.get("products", [])
-
-        elif isinstance(raw_data, list):
-
-            items = raw_data
+        # Extract products from Amazon API response
+        products = data["data"]["products"]
 
 
 
-        for item in items[:max_products]:
+        for item in products[:max_products]:
 
-            title = item.get("product_title", "Unknown")
+            title = item.get("title", "Unknown")
 
             if not title or title == "Unknown":
 
@@ -199,15 +180,15 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
             price = item.get("price", "N/A")
 
-            rating = item.get("product_rating", "N/A")
+            rating = item.get("rating", "N/A")
 
-            num_reviews = item.get("product_num_reviews", 0)
+            num_reviews = item.get("reviews_total", 0)
 
-            store = item.get("store_name", "google_shopping")
+            store = "amazon"
 
-            product_id = item.get("product_id", "")
+            product_id = item.get("asin", "")
 
-            url = item.get("product_offer_page_url", "") or ""
+            url = item.get("url", "") or ""
 
 
 
@@ -215,7 +196,7 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
             reviews = []
 
-            desc = item.get("product_description", "")
+            desc = item.get("description", "")
 
             if desc and len(desc) > 20:
 
@@ -223,7 +204,7 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
                 reviews.extend(sentences[:5])
 
-            for h in item.get("product_highlights", [])[:5]:
+            for h in item.get("feature_bullets", [])[:5]:
 
                 if len(h) > 10:
 
@@ -233,7 +214,7 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
             products.append({
 
-                "source": store.lower().replace(" ", "_") if store else "google_shopping",
+                "source": store,
 
                 "title": title,
 
@@ -255,7 +236,7 @@ def search_products(query: str, max_products: int = 10) -> List[Dict[str, Any]]:
 
 
 
-        logger.info("RapidAPI search-light: %d products for '%s'", len(products), query)
+        logger.info("Amazon API search: %d products for '%s'", len(products), query)
 
     except requests.exceptions.HTTPError as e:
 

@@ -87,8 +87,7 @@ PRODUCT_COMPONENTS = {
 
 
 def _delay(lo=0.3, hi=1.0):
-
-    time.sleep(random.uniform(lo, hi))
+    time.sleep(lo)  # Fixed delay - no randomness
 
 
 
@@ -1212,9 +1211,8 @@ def scrape_all_sites(query: str, max_per_site: int = 5) -> List[Dict[str, Any]]:
 
     if not all_products:
 
-        logger.info("Direct scraping failed, generating sample data...")
-
-        all_products = generate_sample_products(query, max_per_site * 2)
+        logger.warning("No products found and direct scraping failed - returning empty list")
+        # Do NOT generate fake sample data - only return what we actually scraped
 
     
 
